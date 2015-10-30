@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./gradlew installDist
+cp -r ./build/install/late-term_assignment/ /tmp/

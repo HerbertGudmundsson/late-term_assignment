@@ -1,4 +1,4 @@
-package is.hgod.TicTac;
+package is.hgod.tictac;
 
 import static org.junit.Assert.assertEquals;
 import static org.hamcrest.core.IsEqual.equalTo;
