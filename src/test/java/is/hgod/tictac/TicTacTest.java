@@ -1,12 +1,13 @@
-package com.hgod.TicTac;
+package is.hgod.TicTac;
 
 import static org.junit.Assert.assertEquals;
 import static org.hamcrest.core.IsEqual.equalTo;
+import org.junit.Test;
 
 public class TicTacTest {
 
 	public static void main(String args[]) {
-      org.junit.runner.JUnitCore.main("com.hgod.late-term_assignment.TicTacTest");
+      org.junit.runner.JUnitCore.main("is.hgod.late-term_assignment.TicTacTest");
     }
 
     @Test
