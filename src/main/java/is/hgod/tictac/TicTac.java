@@ -11,6 +11,13 @@ public class TicTac{
 		public static int return1(){
 		return 1;
 	}
+
+	public static void test(){
+		boolean thuglife = true;
+		if(thuglife){
+
+		}
+	}
     public static void main(String[] args){
 	System.out.println(1);
     }
