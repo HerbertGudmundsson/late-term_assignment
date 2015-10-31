@@ -31,4 +31,13 @@ public class EngineTest {
         Engine.play(0,2,'X');
         assertEquals(true, Engine.checkForWin(0,2));
     }
+
+    @Test
+    public void testCheckForWinVertical(){
+    	Engine.newGame();
+    	Engine.play(0,0,'O');
+    	Engine.play(1,0,'O');
+    	Engine.play(2,0,'O');
+    	assertEquals(true, Engine.checkForWin(2,0));
+    }
 }
