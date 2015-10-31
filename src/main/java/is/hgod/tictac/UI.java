@@ -181,4 +181,31 @@ public class UI {
             System.out.println("Error reading file '"  + fileName + "'");
         }
     }
+
+    /**
+    * Starts the User Interface
+    */
+    public static void startUI(){
+        Scanner in = new Scanner(System.in);
+        UI t = new UI();
+        t.printHeader();
+        System.out.println("Press any key to continue");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        t.printMenu();
+        int gamemode = Integer.parseInt(in.next());
+        t.printInitialBoard();
+        Character val;
+
+        int turn = 0;
+        while(turn < 10){
+            System.out.println("Select a number from 1 to 9");
+            int col = Integer.parseInt(in.next());
+            t.printBoard();
+            turn++;
+        }
+    }
 }
