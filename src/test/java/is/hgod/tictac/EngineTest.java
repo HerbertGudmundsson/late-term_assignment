@@ -23,4 +23,12 @@ public class EngineTest {
     	assertEquals(false, Engine.isOccupied(0,0));
     }
 
+    @Test
+    public void testCheckForWinHorizontal(){
+    	Engine.newGame();
+        Engine.play(0,0,'X');
+        Engine.play(0,1,'X');
+        Engine.play(0,2,'X');
+        assertEquals(true, Engine.checkForWin(0,2));
+    }
 }

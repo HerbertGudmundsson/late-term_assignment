@@ -27,4 +27,11 @@ public class Engine{
         board = new char[ROWS][COLS];
     }
 
+    public static boolean checkForWin(int row, int col){
+        if(board[row][0] == board[row][1] && board[row][1] == board[row][2]){
+            return true;
+        }
+        return false;
+    }
+
 }
