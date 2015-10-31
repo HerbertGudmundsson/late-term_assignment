@@ -13,12 +13,13 @@ public class Engine{
     private int turns = 0;
     private char[][] board = new char[ROWS][COLS];
 
-    private Player player1, player2;
+    private Human player1, player2;
+    private Computer player3;
 
     Engine(int gameMode){
         if(gameMode == 1){
             player1 = new Human('X');
-            player2 = new Computer('O');
+            player3 = new Computer('O');
         }
         else if(gameMode == 2){
             player1 = new Human('X');
@@ -33,7 +34,20 @@ public class Engine{
         else if(previousPlayer == 1 && player2.getIAm() == 'h'){
             return 2;
         }
+        Pair play = player3.nextPlay(board);
+        play(play.getRow(), play.getCol(), player3.getSymbol());
         return 3;
+    }
+
+    public void humanPlay(int input, int player){
+        if(player == 1){
+            Pair play = player1.nextPlay(input);
+            play(play.getRow(), play.getCol(), player1.getSymbol());
+        }
+        else if(player == 2){
+            Pair play = player2.nextPlay(input);
+            play(play.getRow(), play.getCol(), player2.getSymbol());
+        }
     }
 
     public void play(int row, int col, char symbol){
@@ -46,6 +60,12 @@ public class Engine{
             if(turns == 9){
                 gameTie();
             }
+        }
+        if(previousPlayer == 2){
+            previousPlayer = 1;
+        }
+        else if(previousPlayer == 1){
+            previousPlayer = 2;
         }
     }
 
@@ -103,5 +123,4 @@ public class Engine{
     public char[][] getBoard(){
         return board;
     }
-
 }
