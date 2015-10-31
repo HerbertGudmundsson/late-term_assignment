@@ -100,4 +100,8 @@ public class Engine{
         return computerWins;
     }
 
+    public char[][] getBoard(){
+        return board;
+    }
+
 }
