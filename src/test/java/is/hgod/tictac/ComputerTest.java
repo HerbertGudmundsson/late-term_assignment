@@ -32,4 +32,18 @@ public class ComputerTest {
         assertEquals(true, contains);
     }
 
+    @Test
+    public void testCheckOpponentWinVertical(){
+        char[][] board = new char[3][3];
+        board[0][0] = 'X';
+        board[0][1] = 'X';
+        Pair play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(0, 2)));
+        board = new char[3][3];
+        board[2][1] = 'X';
+        board[2][2] = 'X';
+        play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(2, 0)));
+    }
+
 }
