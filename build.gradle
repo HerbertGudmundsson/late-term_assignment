@@ -36,3 +36,9 @@ dependencies {
 checkstyle {
   configFile = new File(rootDir, "checkstyle.xml")
 }
+
+jar {
+ manifest {
+ attributes("Main-Class": "is.hgod.tictac.TicTac")
+ }
+}

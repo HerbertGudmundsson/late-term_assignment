@@ -7,8 +7,9 @@ bin/clean
 bin/package
 
 # If the installation folder exists under /tmp, remove it
-test -f /tmp/${APP} && rm -r /tmp/${APP}
-cp -r build/install/${APP} /tmp
+test -f /tmp/${APP}/ && rm -r /tmp/${APP}
+mkdir -p /tmp/${APP}
+cp -r build/libs/${APP}.jar /tmp/${APP}
 
 # Run application once
-/tmp/${APP}/bin/${APP}
+java -jar /tmp/${APP}/${APP}.jar
