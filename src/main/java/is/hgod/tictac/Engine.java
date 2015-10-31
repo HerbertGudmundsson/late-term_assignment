@@ -8,7 +8,6 @@ public class Engine{
 	private static final int ROWS = 3;
     private static final int COLS = 3;
 
-    private static int turn = 0;
     private static char[][] board = new char[ROWS][COLS];
 
     public static void play(int row, int col, char symbol){
@@ -22,6 +21,10 @@ public class Engine{
             return true;
         }
         return false;
+    }
+
+    public static void newGame(){
+        board = new char[ROWS][COLS];
     }
 
 }

@@ -15,6 +15,12 @@ public class EngineTest {
         Engine.play(1,1,'X');
         assertEquals(true, Engine.isOccupied(1,1));
     }
-    
+
+    @Test
+    public void testNewGame(){
+    	Engine.play(0,0,'O');
+    	Engine.newGame();
+    	assertEquals(false, Engine.isOccupied(0,0));
+    }
 
 }
