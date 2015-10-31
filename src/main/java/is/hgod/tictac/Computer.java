@@ -15,9 +15,9 @@ public class Computer extends Player{
 	}
 	private char opponentSymbol;
 
-	public Pair checkBoard(char[][] board){
+	public Pair nextPlay(char[][] board){
+		Random rand = new Random();
 		if(isEmpty(board)){
-			Random rand = new Random();
 			return new Pair(rand.nextInt(board[0].length), rand.nextInt(board[0].length));
 		}
 		Pair play = checkForWin(board, opponentSymbol);
@@ -28,8 +28,12 @@ public class Computer extends Player{
 		if(play.getCol() != -1 && play.getRow() != -1){
 			return play;
 		}
-		//TODO: Decide what to do if opponent cannot win next turn
-		return new Pair(0, 0);
+		while(true){
+			play = new Pair(rand.nextInt(board[0].length), rand.nextInt(board[0].length));
+			if(!isOccupied(play.getRow(), play.getCol(), board)){
+				return play;
+			}
+		}
 	}
 
 	public boolean isEmpty(char[][] board){
@@ -45,11 +49,6 @@ public class Computer extends Player{
 			return true;
 		}
 		return false;
-	}
-
-	public Pair nextPlay(char[][] board){
-		Pair play = checkBoard(board);
-		return play;
 	}
 
 	public Pair checkForWin(char [][] board, char symbol){
@@ -131,5 +130,12 @@ public class Computer extends Player{
 		}
 		return new Pair(-1, -1);
 	}
+
+	public boolean isOccupied(int row, int col, char[][] board){
+        if(board[row][col] != 0){
+            return true;
+        }
+        return false;
+    }
 
 }
