@@ -23,4 +23,11 @@ public class PlayerTest {
         assertEquals(1, pair.getRow());
         assertEquals(2, pair.getCol());
     }
+
+    @Test
+    public void testnextPlay(){
+        Pair pair2 = p.nextPlay();
+        assertEquals(0, pair2.getRow());
+        assertEquals(1, pair2.getCol());
+    }
 }

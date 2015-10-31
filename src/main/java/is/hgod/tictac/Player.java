@@ -10,4 +10,8 @@ public class Player{
 	public char getSymbol(){
 		return symbol;
 	}
+
+	public Pair nextPlay(){
+		return new Pair(0,1);
+	}
 }
