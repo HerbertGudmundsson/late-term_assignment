@@ -33,7 +33,7 @@ public class ComputerTest {
     }
 
     @Test
-    public void testCheckOpponentWinVertical(){
+    public void testCheckOpponentWinHorizontal(){
         char[][] board = new char[3][3];
         board[0][0] = 'X';
         board[0][1] = 'X';
@@ -46,4 +46,17 @@ public class ComputerTest {
         assertEquals(true, play.equals(new Pair(2, 0)));
     }
 
+    @Test
+    public void testCheckOpponentWinVertical(){
+        char[][] board = new char[3][3];
+        board[0][0] = 'X';
+        board[1][0] = 'X';
+        Pair play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(2, 0)));
+        board = new char[3][3];
+        board[0][2] = 'X';
+        board[1][2] = 'X';
+        play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(2, 2)));
+    }
 }

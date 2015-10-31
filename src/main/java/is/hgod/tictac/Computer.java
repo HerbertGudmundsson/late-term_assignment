@@ -48,7 +48,19 @@ public class Computer extends Player{
 				return new Pair(i, col);
 			}
 		}
-		//TODO: Check columns and diagonal lines
+		char[] column = new char[3];
+		for(int i = 0; i < board.length; i++){ //column
+			for(int j = 0; j < board.length; j++){ //row
+				column[j] = board[j][i];
+				if(j == 2){
+					int row = checkCol(column);
+					if(row != -1){
+						return new Pair(row, i);
+					}
+				}
+			}
+		}
+		//TODO: Diagonal lines
 		return new Pair(0, 0); 
 	}
 
@@ -64,6 +76,22 @@ public class Computer extends Player{
 		}
 		if(count == 2){
 			return col;
+		}
+		return -1;
+	}
+
+	public int checkCol(char[] col){
+		int count = 0, row = -1;
+		for(int i = 0; i < col.length; i++){
+			if(col[i] != getSymbol() && col[i] != 0){
+				count++;
+			}
+			else if(col[i] == 0){
+				 row = i;
+			}
+		}
+		if(count == 2){
+			return row;
 		}
 		return -1;
 	}
