@@ -73,4 +73,23 @@ public class ComputerTest {
         play = c.nextPlay(board);
         assertEquals(true, play.equals(new Pair(1, 1)));
     }
+
+    @Test
+    public void testCheckForWin(){
+        char[][] board = new char[3][3];
+        board[0][0] = 'O';
+        board[1][1] = 'O';
+        Pair play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(2, 2)));
+        board = new char[3][3];
+        board[0][2] = 'O';
+        board[1][2] = 'O';
+        play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(2, 2)));
+        board = new char[3][3];
+        board[2][1] = 'O';
+        board[2][2] = 'O';
+        play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(2, 0)));
+    }
 }
