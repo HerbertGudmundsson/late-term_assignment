@@ -55,4 +55,12 @@ public class EngineTest {
     	testEngine.play(2,0,'O');
     	assertEquals(true, testEngine.checkForWin(0,2));
     }
+
+    @Test
+    public void testGameTie(){
+    	testEngine.gameTie();
+    	testEngine.gameTie();
+    	testEngine.gameTie();
+    	assertEquals(3, testEngine.getTies());
+    }
 }
