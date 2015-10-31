@@ -17,4 +17,11 @@ public class Pair{
 	public int getCol(){
 		return col;
 	}
+
+	public boolean equals(Pair p){
+		if(p.getRow() == this.getRow() && p.getCol() == this.getCol()){
+			return true;
+	}
+		return false;
+	}
 }
