@@ -10,34 +10,49 @@ public class EngineTest {
       org.junit.runner.JUnitCore.main("is.hgod.late-term_assignment.EngineTest");
     }
 
+    Engine testEngine = new Engine();
+
     @Test
     public void testPlay(){
-        Engine.play(1,1,'X');
-        assertEquals(true, Engine.isOccupied(1,1));
+        testEngine.play(1,1,'X');
+        assertEquals(true, testEngine.isOccupied(1,1));
     }
 
     @Test
     public void testNewGame(){
-    	Engine.play(0,0,'O');
-    	Engine.newGame();
-    	assertEquals(false, Engine.isOccupied(0,0));
+    	testEngine.play(0,0,'O');
+    	testEngine.newGame();
+    	assertEquals(false, testEngine.isOccupied(0,0));
     }
 
     @Test
     public void testCheckForWinHorizontal(){
-    	Engine.newGame();
-        Engine.play(0,0,'X');
-        Engine.play(0,1,'X');
-        Engine.play(0,2,'X');
-        assertEquals(true, Engine.checkForWin(0,2));
+    	testEngine.newGame();
+        testEngine.play(0,0,'X');
+        testEngine.play(0,1,'X');
+        testEngine.play(0,2,'X');
+        assertEquals(true, testEngine.checkForWin(0,2));
     }
 
     @Test
     public void testCheckForWinVertical(){
-    	Engine.newGame();
-    	Engine.play(0,0,'O');
-    	Engine.play(1,0,'O');
-    	Engine.play(2,0,'O');
-    	assertEquals(true, Engine.checkForWin(2,0));
+    	testEngine.newGame();
+    	testEngine.play(0,0,'O');
+    	testEngine.play(1,0,'O');
+    	testEngine.play(2,0,'O');
+    	assertEquals(true, testEngine.checkForWin(2,0));
+    }
+
+    @Test
+    public void testCheckForWinDiagonal(){
+    	testEngine.newGame();
+    	testEngine.play(0,0,'O');
+    	testEngine.play(1,1,'O');
+    	testEngine.play(2,2,'O');
+    	assertEquals(true, testEngine.checkForWin(0,0));
+    	testEngine.play(0,2,'O');
+    	testEngine.play(1,1,'O');
+    	testEngine.play(2,0,'O');
+    	assertEquals(true, testEngine.checkForWin(0,2));
     }
 }
