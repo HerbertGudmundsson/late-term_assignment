@@ -16,4 +16,11 @@ public class PlayerTest {
     public void testConstructor(){
         assertEquals('X', p.getSymbol());
     }
+    
+    @Test
+    public void testPairClass(){
+        Pair pair = new Pair(1,2);
+        assertEquals(1, pair.getRow());
+        assertEquals(2, pair.getCol());
+    }
 }
