@@ -6,6 +6,7 @@ public class Computer extends Player{
 
 	Computer(char symbol){
 		super(symbol);
+		this.setIAm('c');
 		if(symbol == 'X'){
 			opponentSymbol = 'O';
 		}

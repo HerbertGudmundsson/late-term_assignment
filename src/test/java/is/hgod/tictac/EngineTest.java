@@ -10,7 +10,7 @@ public class EngineTest {
       org.junit.runner.JUnitCore.main("is.hgod.late-term_assignment.EngineTest");
     }
 
-    Engine testEngine = new Engine();
+    Engine testEngine = new Engine(1);
 
     @Test
     public void testPlay(){
@@ -62,5 +62,10 @@ public class EngineTest {
     	testEngine.gameTie();
     	testEngine.gameTie();
     	assertEquals(3, testEngine.getTies());
+    }
+
+    @Test
+    public void testNextPlayer(){
+        assertEquals(1, testEngine.nextPlayer()); 
     }
 }

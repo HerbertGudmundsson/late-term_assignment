@@ -4,6 +4,7 @@ public class Human extends Player{
 
 	Human(char symbol){
 		super(symbol);
+		this.setIAm('h');
 	}
 
 	public Pair nextPlay(int input){

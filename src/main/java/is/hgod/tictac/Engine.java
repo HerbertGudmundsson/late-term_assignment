@@ -5,13 +5,36 @@ import java.util.ArrayList;
 
 public class Engine{
 
-	private static final int ROWS = 3;
+	private static final int ROWS = 3; //POSSIBLY NOT STATIC ?
     private static final int COLS = 3;
 
-    private int humanWins = 0, computerWins = 0, ties = 0;
-
+    private int humanWins = 0, computerWins = 0, ties = 0, totalGames = 0;
+    private int previousPlayer = 2;
     private int turns = 0;
     private char[][] board = new char[ROWS][COLS];
+
+    private Player player1, player2;
+
+    Engine(int gameMode){
+        if(gameMode == 1){
+            player1 = new Human('X');
+            player2 = new Computer('O');
+        }
+        else if(gameMode == 2){
+            player1 = new Human('X');
+            player2 = new Human('O');
+        }
+    }
+
+    public int nextPlayer(){
+        if(previousPlayer == 2 && player1.getIAm() == 'h'){
+            return 1;
+        }
+        else if(previousPlayer == 1 && player2.getIAm() == 'h'){
+            return 2;
+        }
+        return 3;
+    }
 
     public void play(int row, int col, char symbol){
         if(!isOccupied(row, col)){
@@ -35,6 +58,12 @@ public class Engine{
 
     public void newGame(){
         board = new char[ROWS][COLS];
+        if(totalGames % 2 == 0){
+            previousPlayer = 2;
+        }
+        else{
+            previousPlayer = 1;
+        }
     }
 
     public boolean checkForWin(int row, int col){
@@ -56,6 +85,7 @@ public class Engine{
     public void gameTie(){
         newGame();
         ties++;
+        totalGames++;
     }
 
     public int getTies(){
