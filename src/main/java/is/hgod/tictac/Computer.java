@@ -18,6 +18,7 @@ public class Computer extends Player{
 		if(play.getCol() != -1){
 			return play;
 		}
+		//TODO: Decide what to do if opponent cannot win next turn
 		return new Pair(0, 0);
 	}
 
@@ -60,8 +61,7 @@ public class Computer extends Player{
 				}
 			}
 		}
-		//TODO: Diagonal lines
-		return new Pair(0, 0); 
+		return checkDiagonal(board); 
 	}
 
 	public int checkRow(char[] row){
@@ -94,6 +94,32 @@ public class Computer extends Player{
 			return row;
 		}
 		return -1;
+	}
+
+	public Pair checkDiagonal(char[][] board){
+		int count = 0, count2 = 0;
+		Pair result = new Pair(0, 0) , result2 = new Pair(0, 0);
+		for(int i = 0; i < board.length; i++){
+			if(board[i][i] != getSymbol() && board[i][i] != 0){
+				count++;
+			}
+			else if(board[i][i] == 0){
+				result = new Pair(i, i);
+			}
+			if(board[i][board.length - i - 1] != getSymbol() && board[i][board.length - i - 1] != 0){
+                count2++;
+            }
+            else if(board[i][board.length - i - 1] == 0){
+                result2 = new Pair(i, board.length - i - 1);
+            }
+		}
+		if(count == 2){
+			return result;
+		}
+		else if(count2 == 2){
+			return result2;
+		}
+		return new Pair(-1, -1);
 	}
 
 }

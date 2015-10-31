@@ -59,4 +59,18 @@ public class ComputerTest {
         play = c.nextPlay(board);
         assertEquals(true, play.equals(new Pair(2, 2)));
     }
+
+    @Test
+    public void testCheckOpponentWinDiagonal(){
+        char[][] board = new char[3][3];
+        board[0][0] = 'X';
+        board[1][1] = 'X';
+        Pair play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(2, 2)));
+        board = new char[3][3];
+        board[2][2] = 'X';
+        board[0][0] = 'X';
+        play = c.nextPlay(board);
+        assertEquals(true, play.equals(new Pair(1, 1)));
+    }
 }
