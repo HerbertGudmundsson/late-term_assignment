@@ -5,7 +5,7 @@ public class Engine{
     private static final int ROWS = 3; //POSSIBLY NOT STATIC ?
     private static final int COLS = 3;
 
-    private int computerWins = 0, ties = 0, totalGames = 0;
+    private int computerWins = 0, ties = 0, totalGames = 0, gameMode = 0;
     private int[] humanWins = {0, 0};
     private int previousPlayer = 2;
     private int turns = 0;
@@ -16,6 +16,7 @@ public class Engine{
 
     Engine(int gameMode){
         newGame();
+        this.gameMode = gameMode;
         if(gameMode == 1){
             player1 = new Human('X');
             player3 = new Computer('O');
@@ -169,5 +170,9 @@ public class Engine{
 
     public int getTurn(){
         return turns;
+    }
+
+    public int getGameMode(){
+        return gameMode;
     }
 }

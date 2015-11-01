@@ -160,4 +160,12 @@ public class EngineTest {
         assertEquals(1, testEngine.getTurn());
     }
 
+    @Test 
+    public void testGetGameMode(){
+        testEngine = new Engine(1);
+        assertEquals(1, testEngine.getGameMode());
+        testEngine = new Engine(2);
+        assertEquals(2, testEngine.getGameMode());
+    }
+
 }

@@ -25,7 +25,7 @@ public class UI {
     /**
      * An array of all the lines of the assets text file.
      */
-    private String[] allLines = new String[385];
+    private String[] allLines = new String[461];
 
     /**
      * Prints 3 empty lines in between the different screens of the game.
