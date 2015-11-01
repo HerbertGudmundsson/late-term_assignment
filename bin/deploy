@@ -4,6 +4,7 @@ APP="late-term_assignment"
 
 # Always deploy new version, clean before
 bin/clean
+bin/check
 bin/package
 
 # If the installation folder exists under /tmp, remove it
