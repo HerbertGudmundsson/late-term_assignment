@@ -61,7 +61,11 @@ public class Engine{
 
     public int computerPlay(){
         Pair play = player3.nextPlay(board);
-        return play(play.getRow(), play.getCol(), player3.getSymbol());
+        int result = play(play.getRow(), play.getCol(), player3.getSymbol());
+        if(result == 1){
+            computerWin();
+        }
+        return result;
     }
 
     public int play(int row, int col, char symbol){
@@ -124,6 +128,11 @@ public class Engine{
 
     public void gameTie(){
         ties++;
+        totalGames++;
+    }
+
+    public void computerWin(){
+        computerWins++;
         totalGames++;
     }
 
