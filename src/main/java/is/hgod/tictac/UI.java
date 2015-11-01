@@ -230,12 +230,8 @@ public class UI {
         Scanner in = new Scanner(System.in);
 
         printHeader();
-        System.out.println("Press any key to continue");
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Press enter to continue");
+        in.nextLine();
         printMenu();
         int gamemode = Integer.parseInt(in.next());
         game = new Engine(gamemode);
