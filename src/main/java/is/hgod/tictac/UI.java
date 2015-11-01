@@ -68,7 +68,7 @@ public class UI {
                 if (game.getBoard()[i][j] == 0) {
                     currentBoard[i] += "0";
                 } else {
-                    currentBoard[i] += (game.getBoard()[i][j]);
+                    currentBoard[i] += game.getBoard()[i][j];
                 }
             }
             switch (currentBoard[i].toString()) {
