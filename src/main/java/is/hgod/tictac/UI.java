@@ -1,10 +1,8 @@
 package is.hgod.tictac;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
+
 
 /**
  * @author Hermann Ingi Ragnarsson <hermannr14@ru.is>
@@ -70,7 +68,7 @@ public class UI {
                 if (game.getBoard()[i][j] == 0) {
                     currentBoard[i] += "0";
                 } else {
-                    currentBoard[i] += game.getBoard()[i][j];
+                    currentBoard[i] += (game.getBoard()[i][j]);
                 }
             }
             switch (currentBoard[i].toString()) {
@@ -206,12 +204,12 @@ public class UI {
      * @throws FileNotFoundException Thrown if no assets text file is found.
      * @throws IOException           Thrown if file is corrupted.
      */
-    private static void getAsciiArt() {
-        String fileName = "assets.txt";
+    private void getAsciiArt() {
+        String fileName = "/assets.txt";
         String line = null;
         try {
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            InputStream in = getClass().getResourceAsStream(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
             int i = 0;
             while ((line = bufferedReader.readLine()) != null) {
                 allLines[i] = line;
