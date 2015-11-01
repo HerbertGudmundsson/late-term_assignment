@@ -21,16 +21,16 @@ public class UI {
     /**
      * An instance of the Engine Class
      */
-    private static Engine game;
+    private Engine game;
     /**
      * An array of all the lines of the assets text file.
      */
-    private static String[] allLines = new String[385];
+    private String[] allLines = new String[385];
 
     /**
      * Prints 3 empty lines in between the different screens of the game.
      */
-    private static void printEmptyLines() {
+    private void printEmptyLines() {
         for (int i = 0; i < 3; i++) {
             System.out.println();
         }
@@ -39,7 +39,7 @@ public class UI {
     /**
      * Prints the name of the game in Ascii art.
      */
-    private static void printHeader() {
+    private void printHeader() {
         int start = 308;
         int end = 339;
         printRow(start, end);
@@ -48,7 +48,7 @@ public class UI {
     /**
      * Prints the game board with numbers indicating the squares of the board.
      */
-    private static void printInitialBoard() {
+    private void printInitialBoard() {
         int start = 253;
         for (int i = 0; i < 3; i++) {
             printRow(start);
@@ -60,7 +60,7 @@ public class UI {
     /**
      * Prints the current game board.
      */
-    private static void printBoard() {
+    private void printBoard() {
         String[] currentBoard = new String[3];
         for (int i = 0; i < 3; i++) {
             currentBoard[i] = "";
@@ -164,7 +164,7 @@ public class UI {
     /**
      * Prints the menu for the game where the player can select either PvP or PvE.
      */
-    private static void printMenu() {
+    private void printMenu() {
         int start = 286;
         int end = 307;
         printRow(start, end);
@@ -177,7 +177,7 @@ public class UI {
      *
      * @param start The line number of the first line to be printed.
      */
-    private static void printRow(int start) {
+    private void printRow(int start) {
         int end = start + 10;
         for (int j = start; j <= end; j++) {
             System.out.println(allLines[j]);
@@ -191,7 +191,7 @@ public class UI {
      * @param start The line number of the first line to be printed.
      * @param end   The line number of the last line to be printed.
      */
-    private static void printRow(int start, int end) {
+    private void printRow(int start, int end) {
         for (int j = start; j <= end; j++) {
             System.out.println(allLines[j]);
         }
@@ -226,7 +226,7 @@ public class UI {
     /**
      * Starts the User Interface
      */
-    public static void startUI() {
+    public void startUI() {
         Scanner in = new Scanner(System.in);
 
         printHeader();
@@ -293,10 +293,5 @@ public class UI {
             }
         }
 
-    }
-
-    public static void main(String[] args) {
-        UI ui = new UI();
-        ui.startUI();
     }
 }
