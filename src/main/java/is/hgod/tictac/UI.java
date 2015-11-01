@@ -233,7 +233,14 @@ public class UI {
         System.out.println("Press enter to continue");
         in.nextLine();
         printMenu();
-        int gamemode = Integer.parseInt(in.next());
+        int gamemode;
+        while(true){
+            String input = in.next();
+            if(input.length() < 2 && (input.charAt(0) == 49 || input.charAt(0) == 50)){
+                gamemode = Integer.parseInt(input);
+                break;
+            }
+        }
         game = new Engine(gamemode);
         printInitialBoard();
 
