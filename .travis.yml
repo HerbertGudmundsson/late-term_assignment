@@ -8,4 +8,11 @@ cache:
 
 notifications:
   email:
-    - hopurinnhgod@gmail.com
+    recipients:
+      - hopurinnhgod@gmail.com
+      - arnio13@ru.is
+      - jonbod12@ru.is
+      - hermannr14@ru.is
+    on_success: [always|never|change] # default: change
+    on_failure: [always|never|change] # default: alwaysnotifications
+    
