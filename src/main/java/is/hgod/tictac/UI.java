@@ -255,8 +255,7 @@ public class UI {
                     System.out.println("Player" + nextPlayer + ": Select a number from 1 to 9");
                     input = in.next();
                 }
-                int winningPlay = game.humanPlay(input, nextPlayer);
-                printBoard();
+                int winningPlay = game.getPlay(input, nextPlayer);
                 while (winningPlay < -1) {
                     if (winningPlay == -2) {
                         System.out.println("Invalid input: " + input + "! Select a number from 1 to 9");
@@ -264,7 +263,7 @@ public class UI {
                         System.out.println("Square already taken: " + input + "! Select another number from 1 to 9");
                     }
                     input = in.next();
-                    winningPlay = game.humanPlay(input, nextPlayer);
+                    winningPlay = game.getPlay(input, nextPlayer);
                 }
                 if (winningPlay == 1) {
                     printBoard();
@@ -288,6 +287,8 @@ public class UI {
                     } else {
                         break;
                     }
+                }else{
+                    printBoard();
                 }
             }
             if (keepPlaying) {

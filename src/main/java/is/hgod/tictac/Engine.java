@@ -36,7 +36,7 @@ public class Engine{
         return 3;
     }
 
-    public int humanPlay(String input, int player){
+    public int getPlay(String input, int player){
         if(input.equals("")){
             return computerPlay();
         }

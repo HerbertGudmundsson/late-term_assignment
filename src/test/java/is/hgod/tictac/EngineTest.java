@@ -87,20 +87,20 @@ public class EngineTest {
     }
 
     @Test
-    public void testHumanPlay(){
+    public void testGetPlay(){
         testEngine.newGame();
-        testEngine.humanPlay("5", 1);
-        testEngine.humanPlay("1", 1);
+        testEngine.getPlay("5", 1);
+        testEngine.getPlay("1", 1);
         char[][] gameBoard = testEngine.getBoard();
         assertEquals('X', gameBoard[1][1]);
         assertEquals('X', gameBoard[2][0]);
         Engine testEngine2 = new Engine(2);
-        testEngine2.humanPlay("5", 1);
+        testEngine2.getPlay("5", 1);
         gameBoard = testEngine2.getBoard();
         assertEquals('X', gameBoard[1][1]);
-        assertEquals(-1, testEngine.humanPlay("", 3));
-        assertEquals(-2, testEngine2.humanPlay("1337", 1));
-        assertEquals(-3, testEngine2.humanPlay("5", 1));
+        assertEquals(-1, testEngine.getPlay("", 3));
+        assertEquals(-2, testEngine2.getPlay("1337", 1));
+        assertEquals(-3, testEngine2.getPlay("5", 1));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class EngineTest {
         testEngine.play(1, 1, 'X');
         testEngine.play(0, 0, 'O');
         testEngine.play(0, 1, 'O');
-        testEngine.humanPlay("9", 2);
+        testEngine.getPlay("9", 2);
         assertEquals(1, testEngine.getHumanWins(2));
         testEngine.humanWin(2);
         testEngine.humanWin(2);
@@ -141,14 +141,14 @@ public class EngineTest {
         testEngine.play(1, 1, 'X');
         testEngine.play(0, 0, 'O');
         testEngine.play(0, 1, 'O');
-        testEngine.humanPlay("", 3);
+        testEngine.getPlay("", 3);
         assertEquals(1, testEngine.getComputerWins());
         testEngine.newGame();
         testEngine.play(2, 2, 'X');
         testEngine.play(1, 1, 'X');
         testEngine.play(0, 0, 'O');
         testEngine.play(0, 1, 'O');
-        testEngine.humanPlay("", 3);
+        testEngine.getPlay("", 3);
         assertEquals(2, testEngine.getComputerWins());
     }
 
@@ -156,7 +156,7 @@ public class EngineTest {
     public void testGetTurn(){
         testEngine.newGame();
         assertEquals(0, testEngine.getTurn());
-        testEngine.humanPlay("5", 1);
+        testEngine.getPlay("5", 1);
         assertEquals(1, testEngine.getTurn());
     }
 
