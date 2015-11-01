@@ -1,7 +1,6 @@
 package is.hgod.tictac;
 
 import static org.junit.Assert.assertEquals;
-import static org.hamcrest.core.IsEqual.equalTo;
 import org.junit.Test;
 
 public class PlayerTest {
