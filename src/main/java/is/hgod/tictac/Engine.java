@@ -5,7 +5,8 @@ public class Engine{
     private static final int ROWS = 3; //POSSIBLY NOT STATIC ?
     private static final int COLS = 3;
 
-    private int humanWins = 0, computerWins = 0, ties = 0, totalGames = 0;
+    private int computerWins = 0, ties = 0, totalGames = 0;
+    private int[] humanWins = {0, 0};
     private int previousPlayer = 2;
     private int turns = 0;
     private char[][] board;
@@ -50,11 +51,20 @@ public class Engine{
         if(isOccupied(play.getRow(), play.getCol())){
             return -3;
         }
+        int result;
         if(player == 1){
-            return play(play.getRow(), play.getCol(), player1.getSymbol());
+            result = play(play.getRow(), play.getCol(), player1.getSymbol());
+            if(result == 1){
+                humanWin(player);
+            }
+            return result;
         }
         else if(player == 2){
-            return play(play.getRow(), play.getCol(), player2.getSymbol());
+            result = play(play.getRow(), play.getCol(), player2.getSymbol());
+            if(result == 1){
+                humanWin(player);
+            }
+            return result;
         }
         return -2;
     }
@@ -136,12 +146,17 @@ public class Engine{
         totalGames++;
     }
 
+    public void humanWin(int player){
+        humanWins[player - 1]++;
+        totalGames++;
+    }
+
     public int getTies(){
         return ties;
     }
 
-    public int getHumanWins(){
-        return humanWins;
+    public int getHumanWins(int player){
+        return humanWins[player - 1];
     }
 
     public int getComputerWins(){

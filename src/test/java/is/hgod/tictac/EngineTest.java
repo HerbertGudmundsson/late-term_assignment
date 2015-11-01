@@ -112,7 +112,24 @@ public class EngineTest {
     @Test
     public void testGetHumanWins(){
         testEngine.newGame();
-        assertEquals(0, testEngine.getHumanWins());
+        assertEquals(0, testEngine.getHumanWins(1));
+        testEngine = new Engine(2);
+        testEngine.play(2, 2, 'X');
+        testEngine.play(1, 1, 'X');
+        testEngine.play(0, 0, 'O');
+        testEngine.play(0, 1, 'O');
+        testEngine.humanPlay("9", 2);
+        assertEquals(1, testEngine.getHumanWins(2));
+        testEngine.humanWin(2);
+        testEngine.humanWin(2);
+        testEngine.humanWin(2);
+        testEngine.humanWin(2);
+        testEngine.humanWin(2);
+        testEngine.humanWin(1);
+        testEngine.humanWin(1);
+        testEngine.humanWin(1);
+        assertEquals(6, testEngine.getHumanWins(2));
+        assertEquals(3, testEngine.getHumanWins(1));
     }
 
     @Test
