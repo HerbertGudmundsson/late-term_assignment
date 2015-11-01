@@ -93,7 +93,7 @@ public class EngineTest {
         testEngine.humanPlay("1", 1);
         char[][] gameBoard = testEngine.getBoard();
         assertEquals('X', gameBoard[1][1]);
-        assertEquals('X', gameBoard[0][0]);
+        assertEquals('X', gameBoard[2][0]);
         Engine testEngine2 = new Engine(2);
         testEngine2.humanPlay("5", 1);
         gameBoard = testEngine2.getBoard();
