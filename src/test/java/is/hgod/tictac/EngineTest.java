@@ -90,14 +90,43 @@ public class EngineTest {
     @Test
     public void testHumanPlay(){
         testEngine.newGame();
-        testEngine.humanPlay(5, 1);
-        testEngine.humanPlay(1, 1);
+        testEngine.humanPlay("5", 1);
+        testEngine.humanPlay("1", 1);
         char[][] gameBoard = testEngine.getBoard();
         assertEquals('X', gameBoard[1][1]);
         assertEquals('X', gameBoard[0][0]);
         Engine testEngine2 = new Engine(2);
-        testEngine2.humanPlay(5, 2);
+        testEngine2.humanPlay("5", 1);
         gameBoard = testEngine2.getBoard();
-        assertEquals('O', gameBoard[1][1]);
+        assertEquals('X', gameBoard[1][1]);
+        assertEquals(-1, testEngine.humanPlay("", 3));
+        assertEquals(-2, testEngine2.humanPlay("1337", 1));
+        assertEquals(-3, testEngine2.humanPlay("5", 1));
+    }
+
+    @Test
+    public void testGetTies(){
+        testEngine.newGame();
+        assertEquals(0, testEngine.getTies());
+    }
+
+    @Test
+    public void testGetHumanWins(){
+        testEngine.newGame();
+        assertEquals(0, testEngine.getHumanWins());
+    }
+
+    @Test
+    public void testGetComputerWins(){
+        testEngine.newGame();
+        assertEquals(0, testEngine.getComputerWins());
+    }
+
+    @Test
+    public void testGetTurn(){
+        testEngine.newGame();
+        assertEquals(0, testEngine.getTurn());
+        testEngine.humanPlay("5", 1);
+        assertEquals(1, testEngine.getTurn());
     }
 }
