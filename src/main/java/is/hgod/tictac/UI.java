@@ -25,7 +25,7 @@ public class UI {
     /**
      * An array of all the lines of the assets text file.
      */
-    private String[] allLines = new String[461];
+    private String[] allLines = new String[497];
 
     /**
      * Prints 3 empty lines in between the different screens of the game.
@@ -55,6 +55,51 @@ public class UI {
             start += 11;
         }
         printEmptyLines();
+        printScoreBoard();
+    }
+
+    /**
+    * Prints the games score with the number of games won for each player currently playing
+    */
+    private void printScoreBoard(){
+        int gamemode = game.getGameMode();
+        String score1, score2;
+        score1 = Integer.toString(game.getHumanWins(1));
+        int numStart = 400;
+        if(gamemode == 1){
+            score2 = Integer.toString(game.getComputerWins());
+            for(int i = 0; i < 8; i++){
+                System.out.print(allLines[384 + i]);
+                for(int j = 0; j < score1.length(); j++){
+                    System.out.print(allLines[numStart + (8 * (score1.charAt(j) - 48) + i)]);
+                }
+                System.out.println();
+            }
+            for(int i = 0; i < 8; i++){
+                System.out.print(allLines[392 + i]);
+                for(int j = 0; j < score2.length(); j++){
+                    System.out.print(allLines[numStart + (8 * (score2.charAt(j) - 48) + i)]);
+                }
+                System.out.println();  
+            }
+        }
+        else if(gamemode == 2){
+            score2 = Integer.toString(game.getHumanWins(2));
+            for(int i = 0; i < 8; i++){
+                System.out.print(allLines[480 + i]);
+                for(int j = 0; j < score1.length(); j++){
+                    System.out.print(allLines[numStart + (8 * (score1.charAt(j) - 48) + i)]);
+                }
+                System.out.println();
+            }
+            for(int i = 0; i < 8; i++){
+                System.out.print(allLines[488 + i]);
+                for(int j = 0; j < score2.length(); j++){
+                    System.out.print(allLines[numStart + (8 * (score2.charAt(j) - 48) + i)]);
+                }
+                System.out.println();  
+            }
+        }
     }
 
     /**

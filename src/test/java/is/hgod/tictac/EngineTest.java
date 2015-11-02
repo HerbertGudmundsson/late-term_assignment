@@ -111,7 +111,7 @@ public class EngineTest {
 
     @Test
     public void testGetHumanWins(){
-        testEngine.newGame();
+        testEngine = new Engine(1);
         assertEquals(0, testEngine.getHumanWins(1));
         testEngine = new Engine(2);
         testEngine.play(2, 2, 'X');
