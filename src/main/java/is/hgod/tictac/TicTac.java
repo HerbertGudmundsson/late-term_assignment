@@ -1,16 +1,10 @@
 package is.hgod.tictac;
 
-
-import spark.Request;
-import spark.Response;
-import spark.Route;
- 
 import static spark.Spark.*;
- 
+
 public class TicTac {
- 
     public static void main(String[] args) {
-     final Engine game = new Engine(1);
+    final Engine game = new Engine(1);
 
         post("/newgame", (request, response) -> {
         	game.newGame();
@@ -18,34 +12,59 @@ public class TicTac {
 		});
 
 		post("/newplay", (request, response) -> {
-            
             String input = request.queryParams("square");
-			game.humanPlay(input, 1);
-			response.redirect("/");
+            if(game.getPlay(input, 1) == 1){
+                return "You won";    
+            }
+			if(game.computerPlay() == 1){
+                return "Computer won";
+            }
+            response.redirect("/");
 			return response;
-		});
+	    });
 
-       get("/", (request, response) -> {
 
+        post("/changeMode", (request, response) -> {
+            String input = request.queryParams("mode");
+            int mode = Integer.parseInt(input);
+            if(mode == 1){
+                return "PvE";
+            }
+            else if(mode == 2){
+                return "PvP";
+            }
+            response.redirect("/");
+            return response;
+        });
+
+        get("/", (request, response) -> {
             StringBuilder buildBoard = new StringBuilder();
             char[][] board = game.getBoard();
-            buildBoard.append("<div class=\"Board\">");
+            int counter = 1;
+            buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"changeMode\">" +
+                            "<input type=\"radio\" name=\"mode\" value=\"2\">PvP" +
+                            "<input type=\"radio\" name=\"mode\" value=\"1\">PvE<br>" +
+                            "<input type=\"submit\" value=\"Submit\">" +
+                            "</form>");
 
+            buildBoard.append("<div class=\"Board\">");
             for (int i = 0; i < 3; i++){
                 for (int j = 0; j < 3; j++){
                     buildBoard.append("<div class=\"square\">");
                     if(board[i][j] == 0){
                         buildBoard.append("<form method=\"post\" action=\"/newplay\" role=\"form\" id=\"board\">" +
-                                "<input type=\"hidden\" name=\"square\" value=\"1\">" +
+                                "<input type=\"hidden\" name=\"square\" value="+ "\"" + counter + "\"" + ">" +
                                 "<button type=\"submit\" class=\"btn btn - default \">Submit move</button>" +
                                 "</form>" +
                                 "</div>");
                     }else if(board[i][j] == 'X'){
-                        buildBoard.append("X");
+                        buildBoard.append("X</div>");
+
                     }else if(board[i][j] == 'O'){
-                        buildBoard.append("O");
+                        buildBoard.append("O</div>");
                     }
-                    buildBoard.append("</div>");
+                    //buildBoard.append("</div>");
+                    counter++;
                 }
             }
             buildBoard.append("</div>");
