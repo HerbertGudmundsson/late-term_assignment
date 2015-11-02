@@ -41,11 +41,16 @@ public class TicTac {
             StringBuilder buildBoard = new StringBuilder();
             char[][] board = game.getBoard();
             int counter = 1;
-            buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"changeMode\">" +
-                            "<input type=\"radio\" name=\"mode\" value=\"2\">PvP" +
-                            "<input type=\"radio\" name=\"mode\" value=\"1\">PvE<br>" +
-                            "<input type=\"submit\" value=\"Submit\">" +
-                            "</form>");
+            buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
+                                "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 1 + "\"" + ">" +
+                                "<button type=\"submit\" class=\"btn btn - default \">PvE</button>" +
+                                "</form>" +
+                                "</div>" +
+                                "<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
+                                "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 2 + "\"" + ">" +
+                                "<button type=\"submit\" class=\"btn btn - default \">PvP</button>" +
+                                "</form>" +
+                                "</div>");
 
             buildBoard.append("<div class=\"Board\">");
             for (int i = 0; i < 3; i++){

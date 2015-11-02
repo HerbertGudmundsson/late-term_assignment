@@ -29,12 +29,12 @@ dependencies {
 }
 
 checkstyle {
-  configFile = new File(rootDir, "checkstyle.xml")
+    configFile = new File(rootDir, "checkstyle.xml")
 }
 
 jar {
- from "assets.txt"
- manifest {
- attributes("Main-Class": "is.hgod.tictac.TicTac")
- }
+    from "assets.txt"
+    manifest {
+    attributes("Main-Class": "is.hgod.tictac.TicTac")
+    }
 }
