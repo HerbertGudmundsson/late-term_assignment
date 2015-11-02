@@ -25,7 +25,7 @@ public class UI {
     /**
      * An array of all the lines of the assets text file.
      */
-    private String[] allLines = new String[497];
+    private String[] allLines = new String[139];
 
     /**
      * Prints 3 empty lines in between the different screens of the game.
@@ -40,8 +40,8 @@ public class UI {
      * Prints the name of the game in Ascii art.
      */
     private void printHeader() {
-        int start = 308;
-        int end = 339;
+        int start = 55;
+        int end = 86;
         printRow(start, end);
     }
 
@@ -49,7 +49,7 @@ public class UI {
      * Prints the game board with numbers indicating the squares of the board.
      */
     private void printInitialBoard() {
-        int start = 253;
+        int start = 0;
         for (int i = 0; i < 3; i++) {
             printRow(start);
             start += 11;
@@ -65,20 +65,20 @@ public class UI {
         int gamemode = game.getGameMode();
         String score1, score2;
         score1 = Integer.toString(game.getHumanWins(1));
-        int numStart = 400;
+        int numStart = 119;
         if(gamemode == 1){
             score2 = Integer.toString(game.getComputerWins());
             for(int i = 0; i < 8; i++){
-                System.out.print(allLines[384 + i]);
+                System.out.print(allLines[87 + i]);
                 for(int j = 0; j < score1.length(); j++){
-                    System.out.print(allLines[numStart + (8 * (score1.charAt(j) - 48) + i)]);
+                    System.out.print(allLines[numStart + i].substring((score1.charAt(j) - 48) * 7, ((score1.charAt(j) - 48) * 7) + 7));
                 }
                 System.out.println();
             }
             for(int i = 0; i < 8; i++){
-                System.out.print(allLines[392 + i]);
+                System.out.print(allLines[95 + i]);
                 for(int j = 0; j < score2.length(); j++){
-                    System.out.print(allLines[numStart + (8 * (score2.charAt(j) - 48) + i)]);
+                    System.out.print(allLines[numStart + i].substring((score2.charAt(j) - 48) * 7, ((score2.charAt(j) - 48) * 7) + 7));
                 }
                 System.out.println();  
             }
@@ -86,16 +86,16 @@ public class UI {
         else if(gamemode == 2){
             score2 = Integer.toString(game.getHumanWins(2));
             for(int i = 0; i < 8; i++){
-                System.out.print(allLines[480 + i]);
+                System.out.print(allLines[103 + i]);
                 for(int j = 0; j < score1.length(); j++){
-                    System.out.print(allLines[numStart + (8 * (score1.charAt(j) - 48) + i)]);
+                    System.out.print(allLines[numStart + i].substring((score1.charAt(j) - 48) * 7, ((score1.charAt(j) - 48) * 7) + 7));
                 }
                 System.out.println();
             }
             for(int i = 0; i < 8; i++){
-                System.out.print(allLines[488 + i]);
+                System.out.print(allLines[111 + i]);
                 for(int j = 0; j < score2.length(); j++){
-                    System.out.print(allLines[numStart + (8 * (score2.charAt(j) - 48) + i)]);
+                    System.out.print(allLines[numStart + i].substring((score2.charAt(j) - 48) * 7, ((score2.charAt(j) - 48) * 7) + 7));
                 }
                 System.out.println();  
             }
@@ -116,92 +116,7 @@ public class UI {
                     currentBoard[i] += game.getBoard()[i][j];
                 }
             }
-            switch (currentBoard[i].toString()) {
-                case "000":
-                    printRow(220);
-                    break;
-                case "XOX":
-                    printRow(0);
-                    break;
-                case "XXX":
-                    printRow(11);
-                    break;
-                case "XXO":
-                    printRow(22);
-                    break;
-                case "XOO":
-                    printRow(33);
-                    break;
-                case "OOO":
-                    printRow(44);
-                    break;
-                case "OOX":
-                    printRow(55);
-                    break;
-                case "OXX":
-                    printRow(66);
-                    break;
-                case "OXO":
-                    printRow(77);
-                    break;
-                case "X00":
-                    printRow(88);
-                    break;
-                case "XX0":
-                    printRow(99);
-                    break;
-                case "0XX":
-                    printRow(110);
-                    break;
-                case "00X":
-                    printRow(121);
-                    break;
-                case "O00":
-                    printRow(132);
-                    break;
-                case "OO0":
-                    printRow(143);
-                    break;
-                case "0OO":
-                    printRow(154);
-                    break;
-                case "00O":
-                    printRow(165);
-                    break;
-                case "XO0":
-                    printRow(176);
-                    break;
-                case "0XO":
-                    printRow(187);
-                    break;
-                case "0OX":
-                    printRow(198);
-                    break;
-                case "OX0":
-                    printRow(209);
-                    break;
-                case "0X0":
-                    printRow(231);
-                    break;
-                case "0O0":
-                    printRow(242);
-                    break;
-                case "X0O":
-                    printRow(340);
-                    break;
-                case "O0X":
-                    printRow(351);
-                    break;
-                case "O0O":
-                    printRow(362);
-                    break;
-                case "X0X":
-                    printRow(373);
-                    break;
-                default:
-                    System.out.println("Asset missing: " + currentBoard[i].toString());
-                    break;
-            }
+            printRow(currentBoard[i]);
         }
         printEmptyLines();
     }
@@ -210,8 +125,8 @@ public class UI {
      * Prints the menu for the game where the player can select either PvP or PvE.
      */
     private void printMenu() {
-        int start = 286;
-        int end = 307;
+        int start = 33;
+        int end = 54;
         printRow(start, end);
     }
 
@@ -239,6 +154,31 @@ public class UI {
     private void printRow(int start, int end) {
         for (int j = start; j <= end; j++) {
             System.out.println(allLines[j]);
+        }
+    }
+
+
+    /**
+    * Prints the Ascii art assets for the game.
+    * The assets were generated using http://patorjk.com/software/taag/.
+    * 
+    * @param row The string value of the line to be printed.
+    */
+    private void printRow(String row){
+        int start = 127;
+        for (int i = 0; i < 11; i++){
+            for(int j = 0; j < 3; j++){
+                if(row.charAt(j) == '0'){
+                    System.out.print(allLines[start + i].substring(40, 60));
+                }
+                else if(row.charAt(j) == 'X'){
+                    System.out.print(allLines[start + i].substring(0, 20));
+                }
+                else{
+                    System.out.print(allLines[start + i].substring(20, 40));
+                }
+            }
+            System.out.println();
         }
     }
 
