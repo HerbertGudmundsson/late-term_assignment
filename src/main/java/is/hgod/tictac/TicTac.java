@@ -62,14 +62,14 @@ public class TicTac {
                     if(board[i][j] == 0){
                         buildBoard.append("<form method=\"post\" action=\"/newplay\" role=\"form\" id=\"board\">" +
                                 "<input type=\"hidden\" name=\"square\" value="+ "\"" + counter + "\"" + ">" +
-                                "<button type=\"submit\" class=\"btn btn - default \">Submit move</button>" +
+                                "<button type=\"submit\" class=\"btn btn - default squarebtn \">Submit move</button>" +
                                 "</form>" +
                                 "</div>");
                     }else if(board[i][j] == 'X'){
-                        buildBoard.append("X</div>");
+                        buildBoard.append("<img src=\"./images/x.png\" /></div>");
 
                     }else if(board[i][j] == 'O'){
-                        buildBoard.append("O</div>");
+                        buildBoard.append("<img src=\"./images/o.png\" /></div>");
                     }
                     counter++;
                 }

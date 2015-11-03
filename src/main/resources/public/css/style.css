@@ -45,3 +45,16 @@ body{
 	border-right-color: #000;
 	border-bottom-color: #000;
 }
+.squarebtn{
+  	text-indent: -1000em;
+  	width: 198px;
+  	height: 198px;
+  	margin: 0;
+  	padding: 0;
+  	border: 0;
+  	background: transparent;
+  	cursor: pointer;
+}
+.Board img{
+
+}
