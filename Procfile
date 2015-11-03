@@ -1,1 +1,1 @@
-web: ./build/install/late-term_assignment/bin/late-term_assignment
+web: ./build/lib/late-term_assignment-all.jar
