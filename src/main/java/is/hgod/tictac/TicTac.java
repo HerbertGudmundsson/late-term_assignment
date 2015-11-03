@@ -13,7 +13,7 @@ public class TicTac {
 
 		post("/newplay", (request, response) -> {
             String input = request.queryParams("square");
-            if(game.getPlay(input, 1) == 1){
+                if(game.getPlay(input, game.nextPlayer()) == 1){
                 return "You won";    
             }
 			if(game.getGameMode() == 1 && game.computerPlay() == 1){
@@ -29,11 +29,9 @@ public class TicTac {
             int mode = Integer.parseInt(input);
             if(mode == 1){
                 game = new Engine(1);     
-                //return "PvE";
             }
             else if(mode == 2){
                 game = new Engine(2);
-                //return "PvP";
             }
             response.redirect("/");
             return response;
