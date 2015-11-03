@@ -35,7 +35,7 @@ checkstyle {
 jar {
     from "assets.txt"
     manifest {
-    attributes("Main-Class": "is.hgod.tictac.TicTac")
+    attributes("Main-Class": "is.hgod.tictac.UI")
     }
 }
 
