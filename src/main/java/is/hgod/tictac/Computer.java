@@ -2,8 +2,18 @@ package is.hgod.tictac;
 
 import java.util.Random;
 
+/**
+ * @author Jón Böðvarsson <jonbod12@ru.is>
+ * @version 0.1
+ * @since 2015-10-30
+ */
 public class Computer extends Player{
 
+    /**
+    * Sole constructor
+    *
+    * @param symbol The symbol that this player uses in the game.
+    */
     Computer(char symbol){
         super(symbol);
         this.setIAm('c');
@@ -14,8 +24,17 @@ public class Computer extends Player{
             opponentSymbol = 'X';
         }
     }
+    /**
+    * Holds the symbol of the opponent player
+    */
     private char opponentSymbol;
 
+    /**
+    * Returns the value of the game board square to be played.
+    *
+    * @param board The game board with all of the game board sqare values.
+    * @return The value of the game board square to be played.
+    */
     public Pair nextPlay(char[][] board){
         Random rand = new Random();
         if(isEmpty(board)){
@@ -26,7 +45,7 @@ public class Computer extends Player{
             return play;
         }
         play = checkForWin(board, opponentSymbol);
-        if(play.getCol() != -1){
+        if(play.getCol() != -1 && play.getRow() != -1){
             return play;
         }
         while(true){
@@ -37,7 +56,7 @@ public class Computer extends Player{
         }
     }
 
-    public boolean isEmpty(char[][] board){
+    private boolean isEmpty(char[][] board){
         int count = 0;
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[i].length; j++){
@@ -52,9 +71,9 @@ public class Computer extends Player{
         return false;
     }
 
-    public Pair checkForWin(char [][] board, char symbol){
+    private Pair checkForWin(char [][] board, char symbol){
         for(int i = 0; i < board.length; i++){
-            int col = checkRow(board[i], symbol);
+            int col = checkLine(board[i], symbol);
             if(col != -1){
                 return new Pair(i, col);
             }
@@ -64,7 +83,7 @@ public class Computer extends Player{
             for(int j = 0; j < board.length; j++){ //row
                 column[j] = board[j][i];
                 if(j == 2){
-                    int row = checkCol(column, symbol);
+                    int row = checkLine(column, symbol);
                     if(row != -1){
                         return new Pair(row, i);
                     }
@@ -74,65 +93,43 @@ public class Computer extends Player{
         return checkDiagonal(board, symbol);
     }
 
-    public int checkRow(char[] row, char symbol){
-        int count = 0, col = -1;
-        for(int i = 0; i < row.length; i++){
-            if(row[i] == symbol){
+    private int checkLine(char[] line, char symbol){
+        int count = 0, result = -1;
+        for(int i = 0; i < line.length; i++){
+            if(line[i] == symbol){
                 count++;
             }
-            else if(row[i] == 0){
-                col = i;
-            }
-        }
-        if(count == 2){
-            return col;
-        }
-        return -1;
-    }
-
-    public int checkCol(char[] col, char symbol){
-        int count = 0, row = -1;
-        for(int i = 0; i < col.length; i++){
-            if(col[i] == symbol){
-                count++;
-            }
-            else if(col[i] == 0){
-                row = i;
-            }
-        }
-        if(count == 2){
-            return row;
-        }
-        return -1;
-    }
-
-    public Pair checkDiagonal(char[][] board, char symbol){
-        int count = 0, count2 = 0;
-        Pair result = new Pair(0, 0) , result2 = new Pair(0, 0);
-        for(int i = 0; i < board.length; i++){
-            if(board[i][i] == symbol){
-                count++;
-            }
-            else if(board[i][i] == 0){
-                result = new Pair(i, i);
-            }
-            if(board[i][board.length - i - 1] == symbol){
-                count2++;
-            }
-            else if(board[i][board.length - i - 1] == 0){
-                result2 = new Pair(i, board.length - i - 1);
+            else if(line[i] == 0){
+                result = i;
             }
         }
         if(count == 2){
             return result;
         }
-        else if(count2 == 2){
-            return result2;
+        return -1;
+    }
+
+    private Pair checkDiagonal(char[][] board, char symbol){
+        char[] line = new char[3];
+        for(int i = 0; i < 3; i++){
+            line[i] = board[i][i];
+        }
+        int result = checkLine(line, symbol);
+        if(result != -1){
+            return new Pair(result, result);
+        }
+        line = new char[3];
+        for(int i = 0; i < 3; i++){
+            line[i] = board[i][2-i];
+        }
+        result = checkLine(line, symbol);
+        if(result != -1){
+            return new Pair(result, 2 - result);
         }
         return new Pair(-1, -1);
     }
 
-    public boolean isOccupied(int row, int col, char[][] board){
+    private boolean isOccupied(int row, int col, char[][] board){
         if(board[row][col] != 0){
             return true;
         }

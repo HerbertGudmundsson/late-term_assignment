@@ -12,55 +12,62 @@ public class EngineTest {
     Engine testEngine = new Engine(1);
 
     @Test
-    public void testPlay(){
-        testEngine.play(1,1,'X');
-        assertEquals(true, testEngine.isOccupied(1,1));
-    }
-
-    @Test
     public void testNewGame(){
-    	testEngine.play(0,0,'O');
+    	testEngine.getPlay("7", 1);
     	testEngine.newGame();
-    	assertEquals(false, testEngine.isOccupied(0,0));
+    	assertEquals(0, testEngine.getBoard()[0][0]);
     }
 
     @Test
     public void testCheckForWinHorizontal(){
     	testEngine.newGame();
-        testEngine.play(0,0,'X');
-        testEngine.play(0,1,'X');
-        testEngine.play(0,2,'X');
-        assertEquals(true, testEngine.checkForWin(0,2));
+        testEngine.getPlay("3", 1);
+        testEngine.getPlay("2", 1);
+        testEngine.getPlay("7", 1);
+        testEngine.getPlay("8", 1);
+        assertEquals(1, testEngine.getPlay("9", 1));
     }
 
     @Test
     public void testCheckForWinVertical(){
     	testEngine.newGame();
-    	testEngine.play(0,0,'O');
-    	testEngine.play(1,0,'O');
-    	testEngine.play(2,0,'O');
-    	assertEquals(true, testEngine.checkForWin(2,0));
+        testEngine.getPlay("9", 1);
+        testEngine.getPlay("8", 1);
+        testEngine.getPlay("7", 1);
+        testEngine.getPlay("4", 1);
+        assertEquals(1, testEngine.getPlay("1", 1));
     }
 
     @Test
     public void testCheckForWinDiagonal(){
     	testEngine.newGame();
-    	testEngine.play(0,0,'O');
-    	testEngine.play(1,1,'O');
-    	testEngine.play(2,2,'O');
-    	assertEquals(true, testEngine.checkForWin(0,0));
-    	testEngine.play(0,2,'O');
-    	testEngine.play(1,1,'O');
-    	testEngine.play(2,0,'O');
-    	assertEquals(true, testEngine.checkForWin(0,2));
+        testEngine.getPlay("9", 1);
+        testEngine.getPlay("8", 1);
+        testEngine.getPlay("7", 1);
+        testEngine.getPlay("5", 1);
+        assertEquals(1, testEngine.getPlay("3", 1));
+        testEngine.newGame();
+        testEngine.getPlay("7", 1);
+        testEngine.getPlay("8", 1);
+        testEngine.getPlay("9", 1);
+        testEngine.getPlay("5", 1);
+        assertEquals(1, testEngine.getPlay("1", 1));
     }
 
     @Test
     public void testGameTie(){
-    	testEngine.gameTie();
-    	testEngine.gameTie();
-    	testEngine.gameTie();
-    	assertEquals(3, testEngine.getTies());
+        Engine testEngine2 = new Engine(2);
+        testEngine2.newGame();
+        testEngine2.getPlay("7", 1);
+        testEngine2.getPlay("8", 2);
+        testEngine2.getPlay("9", 1);
+        testEngine2.getPlay("4", 2);
+        testEngine2.getPlay("5", 1);
+        testEngine2.getPlay("6", 2);
+        testEngine2.getPlay("3", 2);
+        testEngine2.getPlay("2", 1);
+        testEngine2.getPlay("1", 2);
+    	assertEquals(1, testEngine2.getTies());
     }
 
     @Test
@@ -71,9 +78,9 @@ public class EngineTest {
     @Test
     public void testGetBoard(){
         testEngine.newGame();
-        testEngine.play(0,0,'X');
-        testEngine.play(1,1,'X');
-        testEngine.play(1,2,'X');
+        testEngine.getPlay("7", 1);
+        testEngine.getPlay("5", 1);
+        testEngine.getPlay("6", 1);
         char[][] testBoard = new char[3][3];
         char[][] gameBoard = testEngine.getBoard();
         testBoard[0][0] = 'X';
@@ -114,22 +121,19 @@ public class EngineTest {
         testEngine = new Engine(1);
         assertEquals(0, testEngine.getHumanWins(1));
         testEngine = new Engine(2);
-        testEngine.play(2, 2, 'X');
-        testEngine.play(1, 1, 'X');
-        testEngine.play(0, 0, 'O');
-        testEngine.play(0, 1, 'O');
+        testEngine.getPlay("3", 1);
+        testEngine.getPlay("5", 1);
+        testEngine.getPlay("7", 2);
+        testEngine.getPlay("8", 2);
         testEngine.getPlay("9", 2);
         assertEquals(1, testEngine.getHumanWins(2));
-        testEngine.humanWin(2);
-        testEngine.humanWin(2);
-        testEngine.humanWin(2);
-        testEngine.humanWin(2);
-        testEngine.humanWin(2);
-        testEngine.humanWin(1);
-        testEngine.humanWin(1);
-        testEngine.humanWin(1);
-        assertEquals(6, testEngine.getHumanWins(2));
-        assertEquals(3, testEngine.getHumanWins(1));
+        testEngine.newGame();
+        testEngine.getPlay("3", 1);
+        testEngine.getPlay("5", 1);
+        testEngine.getPlay("7", 2);
+        testEngine.getPlay("8", 2);
+        testEngine.getPlay("9", 2);
+        assertEquals(2, testEngine.getHumanWins(2));
     }
 
     @Test
@@ -137,19 +141,13 @@ public class EngineTest {
         testEngine.newGame();
         assertEquals(0, testEngine.getComputerWins());
         testEngine = new Engine(1);
-        testEngine.play(2, 2, 'X');
-        testEngine.play(1, 1, 'X');
-        testEngine.play(0, 0, 'O');
-        testEngine.play(0, 1, 'O');
+        testEngine.newGame();
+        testEngine.getPlay("", 3);
+        testEngine.getPlay("", 3);
+        testEngine.getPlay("", 3);
+        testEngine.getPlay("", 3);
         testEngine.getPlay("", 3);
         assertEquals(1, testEngine.getComputerWins());
-        testEngine.newGame();
-        testEngine.play(2, 2, 'X');
-        testEngine.play(1, 1, 'X');
-        testEngine.play(0, 0, 'O');
-        testEngine.play(0, 1, 'O');
-        testEngine.getPlay("", 3);
-        assertEquals(2, testEngine.getComputerWins());
     }
 
     @Test

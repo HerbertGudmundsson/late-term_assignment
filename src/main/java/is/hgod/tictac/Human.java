@@ -1,12 +1,27 @@
 package is.hgod.tictac;
 
+/**
+ * @author Jón Böðvarsson <jonbod12@ru.is>
+ * @version 0.1
+ * @since 2015-10-30
+ */
 public class Human extends Player{
 
+    /**
+    * Sole constructor, sets the players symbol and the type of player to h for human.
+    *
+    * @param symbol The symbol that this player uses in the game.
+    */
     Human(char symbol){
         super(symbol);
         this.setIAm('h');
     }
-
+    /**
+    * Takes an input from the UI and returns the value of the game board square to be played.
+    * 
+    * @param input The user input from the UI.
+    * @return The value of the game boards square to be played.
+    */
     public Pair nextPlay(int input){
         switch(input){
             case 1: return new Pair(2, 0);
