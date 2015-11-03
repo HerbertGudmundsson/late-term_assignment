@@ -167,5 +167,5 @@ public class EngineTest {
         testEngine = new Engine(2);
         assertEquals(2, testEngine.getGameMode());
     }
-
 }
+
