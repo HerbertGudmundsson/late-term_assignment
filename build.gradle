@@ -44,6 +44,9 @@ task myJavadocs(type: Javadoc) {
     source = sourceSets.main.allJava
 }
 
+task stage{
+    dependsOn installDist
+}
 jacocoTestReport {
     reports {
         xml.enabled false
