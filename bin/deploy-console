@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+APP="late-term_assignment"
+
+# Always deploy new version, clean before
+bin/clean
+bin/check
+bin/package-console
+
+# If the installation folder exists under /tmp, remove it
+test -f /tmp/${APP}/ && rm -r /tmp/${APP}
+mkdir -p /tmp/${APP}
+cp -r build/libs/${APP}.jar /tmp/${APP}
+cp -r build/docs/javadoc/ docs/
+# Run application once
+java -jar /tmp/${APP}/${APP}.jar

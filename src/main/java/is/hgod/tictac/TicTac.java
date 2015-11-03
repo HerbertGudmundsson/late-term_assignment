@@ -13,10 +13,7 @@ public class TicTac{
     * @param args String argument input.
     */	
     public static void main(String[] args){
-		WebApp ticTac = new WebApp();
+	WebApp ticTac = new WebApp();
         ticTac.startApp();  
-
-        /*UI ui = new UI();
-		ui.startUI();*/
     }
 }
