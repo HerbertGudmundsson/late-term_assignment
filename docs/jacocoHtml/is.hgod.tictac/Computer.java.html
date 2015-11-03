@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Computer.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">late-term_assignment</a> &gt; <a href="index.source.html" class="el_package">is.hgod.tictac</a> &gt; <span class="el_source">Computer.java</span></div><h1>Computer.java</h1><pre class="source lang-java linenums">package is.hgod.tictac;
+
+import java.util.Random;
+
+/**
+ * @author Jón Böðvarsson jonbod12@ru.is
+ * @version 0.1
+ * @since 2015-10-30
+ */
+public class Computer extends Player{
+
+    /**
+    * Sole constructor
+    *
+    * @param symbol The symbol that this player uses in the game.
+    */
+    Computer(char symbol){
+<span class="fc" id="L18">        super(symbol);</span>
+<span class="fc" id="L19">        this.setIAm('c');</span>
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">        if(symbol == 'X'){</span>
+<span class="nc" id="L21">            opponentSymbol = 'O';</span>
+        }
+        else{
+<span class="fc" id="L24">            opponentSymbol = 'X';</span>
+        }
+<span class="fc" id="L26">    }</span>
+    /**
+    * Holds the symbol of the opponent player
+    */
+    private char opponentSymbol;
+
+    /**
+    * Returns the value of the game board square to be played.
+    *
+    * @param board The game board with all of the game board sqare values.
+    * @return The value of the game board square to be played.
+    */
+    public Pair nextPlay(char[][] board){
+<span class="fc" id="L39">        Random rand = new Random();</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if(isEmpty(board)){</span>
+<span class="fc" id="L41">            return new Pair(rand.nextInt(board[0].length), rand.nextInt(board[0].length));</span>
+        }
+<span class="fc" id="L43">        Pair play = checkForWin(board, getSymbol());</span>
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        if(play.getCol() != -1 &amp;&amp; play.getRow() != -1){</span>
+<span class="fc" id="L45">            return play;</span>
+        }
+<span class="fc" id="L47">        play = checkForWin(board, opponentSymbol);</span>
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">        if(play.getCol() != -1 &amp;&amp; play.getRow() != -1){</span>
+<span class="fc" id="L49">            return play;</span>
+        }
+        while(true){
+<span class="fc" id="L52">            play = new Pair(rand.nextInt(board[0].length), rand.nextInt(board[0].length));</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            if(!isOccupied(play.getRow(), play.getCol(), board)){</span>
+<span class="fc" id="L54">                return play;</span>
+            }
+        }
+    }
+
+    private boolean isEmpty(char[][] board){
+<span class="fc" id="L60">        int count = 0;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        for(int i = 0; i &lt; board.length; i++){</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            for(int j = 0; j &lt; board[i].length; j++){</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">                if(board[i][j] != 0){</span>
+<span class="fc" id="L64">                    count++;</span>
+                }
+            }
+        }
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if(count == 0){</span>
+<span class="fc" id="L69">            return true;</span>
+        }
+<span class="fc" id="L71">        return false;</span>
+    }
+
+    private Pair checkForWin(char [][] board, char symbol){
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for(int i = 0; i &lt; board.length; i++){</span>
+<span class="fc" id="L76">            int col = checkLine(board[i], symbol);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            if(col != -1){</span>
+<span class="fc" id="L78">                return new Pair(i, col);</span>
+            }
+        }
+<span class="fc" id="L81">        char[] column = new char[3];</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        for(int i = 0; i &lt; board.length; i++){ //column</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            for(int j = 0; j &lt; board.length; j++){ //row</span>
+<span class="fc" id="L84">                column[j] = board[j][i];</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                if(j == 2){</span>
+<span class="fc" id="L86">                    int row = checkLine(column, symbol);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">                    if(row != -1){</span>
+<span class="fc" id="L88">                        return new Pair(row, i);</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L93">        return checkDiagonal(board, symbol);</span>
+    }
+
+    private int checkLine(char[] line, char symbol){
+<span class="fc" id="L97">        int count = 0, result = -1;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        for(int i = 0; i &lt; line.length; i++){</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">            if(line[i] == symbol){</span>
+<span class="fc" id="L100">                count++;</span>
+            }
+<span class="fc bfc" id="L102" title="All 2 branches covered.">            else if(line[i] == 0){</span>
+<span class="fc" id="L103">                result = i;</span>
+            }
+        }
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if(count == 2){</span>
+<span class="fc" id="L107">            return result;</span>
+        }
+<span class="fc" id="L109">        return -1;</span>
+    }
+
+    private Pair checkDiagonal(char[][] board, char symbol){
+<span class="fc" id="L113">        char[] line = new char[3];</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        for(int i = 0; i &lt; 3; i++){</span>
+<span class="fc" id="L115">            line[i] = board[i][i];</span>
+        }
+<span class="fc" id="L117">        int result = checkLine(line, symbol);</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if(result != -1){</span>
+<span class="fc" id="L119">            return new Pair(result, result);</span>
+        }
+<span class="fc" id="L121">        line = new char[3];</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">        for(int i = 0; i &lt; 3; i++){</span>
+<span class="fc" id="L123">            line[i] = board[i][2-i];</span>
+        }
+<span class="fc" id="L125">        result = checkLine(line, symbol);</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        if(result != -1){</span>
+<span class="fc" id="L127">            return new Pair(result, 2 - result);</span>
+        }
+<span class="fc" id="L129">        return new Pair(-1, -1);</span>
+    }
+
+    private boolean isOccupied(int row, int col, char[][] board){
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        if(board[row][col] != 0){</span>
+<span class="fc" id="L134">            return true;</span>
+        }
+<span class="fc" id="L136">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

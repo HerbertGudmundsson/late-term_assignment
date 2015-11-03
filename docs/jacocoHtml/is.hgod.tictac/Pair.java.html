@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Pair.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">late-term_assignment</a> &gt; <a href="index.source.html" class="el_package">is.hgod.tictac</a> &gt; <span class="el_source">Pair.java</span></div><h1>Pair.java</h1><pre class="source lang-java linenums">package is.hgod.tictac;
+
+/**
+ * @author Hermann Ingi Ragnarsson hermannr14@ru.is
+ * @version 0.1
+ * @since 2015-10-30
+ */
+public class Pair{
+	
+	/**
+    * Sole constructor, sets the pairs row and col values.
+    *
+    * @param row The row number of the pair corresponding to a 2-d plane.
+    * @param col The column number of the pair corresponding to a 2-d plane
+    */
+<span class="fc" id="L16">	Pair(int row, int col){</span>
+<span class="fc" id="L17">		this.row = row;</span>
+<span class="fc" id="L18">		this.col = col;</span>
+<span class="fc" id="L19">	}</span>
+	
+	/**
+    * Holds the value of the row of this pair.
+    */
+	private int row;
+	/**
+    * Holds the value of the column of this pair.
+    */
+	private int col;
+	
+	/**
+    * Returns the row value of this pair.
+    * 
+    * @return The row value of this pair.
+    */	
+	public int getRow(){
+<span class="fc" id="L36">		return row;</span>
+	}
+
+	/**
+    * Returns the column value of this pair.
+    * 
+    * @return The column value of this pair.
+    */	
+	public int getCol(){
+<span class="fc" id="L45">		return col;</span>
+	}
+
+	/**
+    * Compares two pairs and determines if they are equal or not.
+    * 
+    * @param p An instance of the pair class to be compared to this pair.
+    * @return True if the pairs are equals but false otherwise.
+    */	
+	public boolean equals(Pair p){
+<span class="fc bfc" id="L55" title="All 4 branches covered.">		if(p.getRow() == this.getRow() &amp;&amp; p.getCol() == this.getCol()){</span>
+<span class="fc" id="L56">			return true;</span>
+	}
+<span class="fc" id="L58">		return false;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

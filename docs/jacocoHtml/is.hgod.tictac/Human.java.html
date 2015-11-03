@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Human.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">late-term_assignment</a> &gt; <a href="index.source.html" class="el_package">is.hgod.tictac</a> &gt; <span class="el_source">Human.java</span></div><h1>Human.java</h1><pre class="source lang-java linenums">package is.hgod.tictac;
+
+/**
+ * @author Jón Böðvarsson jonbod12@ru.is
+ * @version 0.1
+ * @since 2015-10-30
+ */
+public class Human extends Player{
+
+    /**
+    * Sole constructor, sets the players symbol and the type of player to h for human.
+    *
+    * @param symbol The symbol that this player uses in the game.
+    */
+    Human(char symbol){
+<span class="fc" id="L16">        super(symbol);</span>
+<span class="fc" id="L17">        this.setIAm('h');</span>
+<span class="fc" id="L18">    }</span>
+    /**
+    * Takes an input from the UI and returns the value of the game board square to be played.
+    * 
+    * @param input The user input from the UI.
+    * @return The value of the game boards square to be played.
+    */
+    public Pair nextPlay(int input){
+<span class="fc bfc" id="L26" title="All 10 branches covered.">        switch(input){</span>
+<span class="fc" id="L27">            case 1: return new Pair(2, 0);</span>
+<span class="fc" id="L28">            case 2: return new Pair(2, 1);</span>
+<span class="fc" id="L29">            case 3: return new Pair(2, 2);</span>
+<span class="fc" id="L30">            case 4: return new Pair(1, 0);</span>
+<span class="fc" id="L31">            case 5: return new Pair(1, 1);</span>
+<span class="fc" id="L32">            case 6: return new Pair(1, 2);</span>
+<span class="fc" id="L33">            case 7: return new Pair(0, 0);</span>
+<span class="fc" id="L34">            case 8: return new Pair(0, 1);</span>
+<span class="fc" id="L35">            case 9: return new Pair(0, 2);</span>
+<span class="fc" id="L36">            default: return new Pair(-1, -1);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

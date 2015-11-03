@@ -12,5 +12,6 @@ test -f /tmp/${APP}/ && rm -r /tmp/${APP}
 mkdir -p /tmp/${APP}
 cp -r build/libs/${APP}.jar /tmp/${APP}
 cp -r build/docs/javadoc/ docs/
+cp -r build/jacocoHtml/ docs/
 # Run application once
 java -jar /tmp/${APP}/${APP}.jar
