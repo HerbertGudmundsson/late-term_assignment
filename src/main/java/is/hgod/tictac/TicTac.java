@@ -6,7 +6,8 @@ public class TicTac {
     private static Engine game = new Engine(1);
     
     public static void main(String[] args) {
-        
+        staticFileLocation("/public");
+
         post("/newplay", (request, response) -> {
             String input = request.queryParams("square");
             if(game.getPlay(input, game.nextPlayer()) == 1){
@@ -38,8 +39,10 @@ public class TicTac {
 
         get("/", (request, response) -> {
             StringBuilder buildBoard = new StringBuilder();
-            char[][] board = game.getBoard();
+            char[][] board = game.getBoard();           
             int counter = 7;
+
+            buildBoard.append("<head><link href=\"css/style.css\" rel=\"stylesheet\"   type=\"text/css\" /></head>");
             buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
                                 "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 1 + "\"" + ">" +
                                 "<button type=\"submit\" class=\"btn btn - default \">PvE</button>" +
@@ -54,18 +57,18 @@ public class TicTac {
             buildBoard.append("<div class=\"Board\">");
             for (int i = 0; i < 3; i++){
                 for (int j = 0; j < 3; j++){
-                    buildBoard.append("<div class=\"square\">");
+                    buildBoard.append("<div class=\"square\" id=\"square" + counter + "\">");
                     if(board[i][j] == 0){
                         buildBoard.append("<form method=\"post\" action=\"/newplay\" role=\"form\" id=\"board\">" +
                                 "<input type=\"hidden\" name=\"square\" value="+ "\"" + counter + "\"" + ">" +
-                                "<button type=\"submit\" class=\"btn btn - default \">Submit move</button>" +
+                                "<button type=\"submit\" class=\"btn btn - default squarebtn \">Submit move</button>" +
                                 "</form>" +
                                 "</div>");
                     }else if(board[i][j] == 'X'){
-                        buildBoard.append("X</div>");
+                        buildBoard.append("<img src=\"./images/x.png\" /></div>");
 
                     }else if(board[i][j] == 'O'){
-                        buildBoard.append("O</div>");
+                        buildBoard.append("<img src=\"./images/o.png\" /></div>");
                     }
                     counter++;
                 }
