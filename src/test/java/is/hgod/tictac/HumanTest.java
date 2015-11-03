@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class HumanTest {
 
-	public static void main(String args[]) {
+    public static void main(String args[]) {
         org.junit.runner.JUnitCore.main("is.hgod.late-term_assignment.PlayerTest");
     }
 

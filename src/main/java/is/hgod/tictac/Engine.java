@@ -184,16 +184,16 @@ public class Engine{
     }
 
     private boolean checkForWin(int row, int col){
-        if(board[row][0] == board[row][1] && board[row][1] == board[row][2]){
+        if(board[row][0] == board[row][1] && board[row][1] == board[row][2] && board[row][2] != 0){
             return true;
         }
-        else if(board[0][col] == board[1][col] && board[1][col] == board[2][col]){
+        else if(board[0][col] == board[1][col] && board[1][col] == board[2][col] && board[2][col] != 0){
             return true;
         }
-        else if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && isOccupied(2, 2) ){
+        else if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && isOccupied(2, 2) && board[2][2] != 0){
             return true;
         }
-        else if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && isOccupied(2, 0)){
+        else if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && isOccupied(2, 0) && board[2][0] != 0){
             return true;
         }
         return false;
@@ -262,4 +262,17 @@ public class Engine{
     public int getGameMode(){
         return gameMode;
     }
+
+    public boolean isWon(){
+        boolean result = false;
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(checkForWin(i, j)){
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
 }
+

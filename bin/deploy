@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-APP="late-term_assignment"
+APP="late-term_assignment-all"
 
 # Always deploy new version, clean before
 bin/clean
