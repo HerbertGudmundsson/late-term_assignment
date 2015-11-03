@@ -13,7 +13,7 @@ public class WebApp {
         post("/newplay", (request, response) -> {
             String input = request.queryParams("square");
             game.getPlay(input, game.nextPlayer()); 
-            if(game.getGameMode() == 1){
+            if(game.getGameMode() == 1 && game.getTurn() != 9){
             	game.computerPlay();
             }
             response.redirect("/");

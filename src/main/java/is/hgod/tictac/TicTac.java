@@ -16,7 +16,7 @@ public class TicTac{
 		WebApp ticTac = new WebApp();
         ticTac.startApp();  
 
-        UI ui = new UI();
-		ui.startUI();
+        /*UI ui = new UI();
+		ui.startUI();*/
     }
 }
