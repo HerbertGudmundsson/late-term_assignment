@@ -42,18 +42,9 @@ public class TicTac {
             char[][] board = game.getBoard();           
             int counter = 7;
 
-            buildBoard.append("<head><link href=\"css/style.css\" rel=\"stylesheet\"   type=\"text/css\" /></head>");
-            buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
-                                "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 1 + "\"" + ">" +
-                                "<button type=\"submit\" class=\"btn btn - default \">PvE</button>" +
-                                "</form>" +
-                                "</div>" +
-                                "<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
-                                "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 2 + "\"" + ">" +
-                                "<button type=\"submit\" class=\"btn btn - default \">PvP</button>" +
-                                "</form>" +
-                                "</div>");
-
+            buildBoard.append("<head><link href=\"css/style.css\" rel=\"stylesheet\"   type=\"text/css\" /></head>" 
+                );
+            
             buildBoard.append("<div class=\"Board\">");
             for (int i = 0; i < 3; i++){
                 for (int j = 0; j < 3; j++){
@@ -80,17 +71,27 @@ public class TicTac {
 
             if(game.getGameMode() == 1){
                 int computerwins = game.getComputerWins();
-                buildBoard.append("</div>" +
-                              "<div class=\"player1wins\"> Player 1 wins: " + player1wins + "</div>" +
-                              "<div class=\"computerwins\"> Computer wins: "  + computerwins + "</div>" +
+                buildBoard.append("</div>" + "<div class=\"scoreboard\">" +
+                              "<div class=\"player1wins\"> X wins: " + player1wins + "</div>" +
+                              "<div class=\"computerwins\"> O wins: "  + computerwins + "</div>" +
                               "<div class=\"ties\"> Ties: " + ties + "</div>");    
             }else{
                 int player2wins = game.getHumanWins(2);
-                buildBoard.append("</div>" +
-                              "<div class=\"player1wins\"> Player 1 wins: " + player1wins + "</div>" +
-                              "<div class=\"player2wins\"> Player 2 wins: " + player2wins + "</div>" +
+                buildBoard.append("</div>" + "<div class=\"scoreboard\">" +
+                              "<div class=\"player1wins\"> X wins: " + player1wins + "</div>" +
+                              "<div class=\"player2wins\"> O wins: " + player2wins + "</div>" +
                               "<div class=\"ties\"> Ties: " + ties + "</div>");
             }
+
+            buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
+                                "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 2 + "\"" + ">" +
+                                "<button type=\"submit\" class=\"btn-pvp btn - default \">PvP</button>" +
+                                "</form>" +
+                                "<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
+                                "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 1 + "\"" + ">" +
+                                "<button type=\"submit\" class=\"btn-pve btn - default \">PvE</button>" +
+                                "</form>" +
+                                "</div>");
             
             return buildBoard.toString();
         });

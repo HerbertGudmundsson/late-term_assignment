@@ -1,11 +1,15 @@
+@font-face {
+  font-family: "RussoOne";
+  src: local('Russo One'), local('Russo'), url('../fonts/RussoOne-Regular.ttf') format('truetype');
+}
 body{
 	background-color:#000;
 }
 .board{
-	width:600px;
-	height:600px;
+	width: 600px;
+	height: 600px;
 	overflow: hidden;
-	margin:0 auto 0 auto;
+	margin: 120px auto 70px auto;
 }
 .square{
 	width:198;
@@ -55,6 +59,50 @@ body{
   	background: transparent;
   	cursor: pointer;
 }
-.Board img{
-
+.btn-pve{
+	text-indent: -1000em;
+	width:32px;
+	height:40px;
+	margin: 0;
+  	padding: 0;
+  	border: 0;
+  	background-color: transparent;
+    background-image: url('../images/pve.png');
+	cursor: pointer;
+	float:right;
+}
+.btn-pvp{
+	text-indent: -1000em;
+	width:45px;
+	height:40px;
+	margin-left: 30;
+  	padding: 0;
+  	border: 0;
+	background-color: transparent;
+    background-image: url('../images/pvp.png');
+	cursor: pointer;
+	float:right;
+}
+.scoreboard{
+	color:#FFF;
+	width:600px;
+	height:30;
+	margin:0 auto 0 auto;
+	font-family: 'RussoOne', sans-serif;
+	font-weight: bold;
+	font-size: 120%;
+}	
+.player1wins, .player2wins{
+	float:left;
+	margin-right:38px;
+	margin-top:15px;
+}
+.computerwins{
+	float:left;
+	margin-right:38px;
+	margin-top:15px;
+}
+.ties{
+	float:left;
+	margin-top:15px;
 }
