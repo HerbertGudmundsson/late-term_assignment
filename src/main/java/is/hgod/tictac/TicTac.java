@@ -3,10 +3,10 @@ package is.hgod.tictac;
 import static spark.Spark.*;
 
 public class TicTac {
+    private static Engine game = new Engine(1);
+    
     public static void main(String[] args) {
         staticFileLocation("/public");
-        final Engine game = new Engine(1);
-
         post("/newgame", (request, response) -> {
         	game.newGame();
         	return response;
@@ -14,10 +14,10 @@ public class TicTac {
 
 		post("/newplay", (request, response) -> {
             String input = request.queryParams("square");
-            if(game.getPlay(input, 1) == 1){
+                if(game.getPlay(input, game.nextPlayer()) == 1){
                 return "You won";    
             }
-			if(game.computerPlay() == 1){
+			if(game.getGameMode() == 1 && game.computerPlay() == 1){
                 return "Computer won";
             }
             response.redirect("/");
@@ -29,10 +29,10 @@ public class TicTac {
             String input = request.queryParams("mode");
             int mode = Integer.parseInt(input);
             if(mode == 1){
-                return "PvE";
+                game = new Engine(1);     
             }
             else if(mode == 2){
-                return "PvP";
+                game = new Engine(2);
             }
             response.redirect("/");
             return response;
@@ -40,8 +40,9 @@ public class TicTac {
 
         get("/", (request, response) -> {
             StringBuilder buildBoard = new StringBuilder();
-            char[][] board = game.getBoard();
-            int counter = 1;
+            char[][] board = game.getBoard();           
+            int counter = 7;
+            
             buildBoard.append("<head><link href=\"css/style.css\" rel=\"stylesheet\"   type=\"text/css\" /></head>");
             buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
                                 "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 1 + "\"" + ">" +
@@ -70,9 +71,9 @@ public class TicTac {
                     }else if(board[i][j] == 'O'){
                         buildBoard.append("O</div>");
                     }
-                    //buildBoard.append("</div>");
                     counter++;
                 }
+                counter -= 6;
             }
             buildBoard.append("</div>");
             return buildBoard.toString();
