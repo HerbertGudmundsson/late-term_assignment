@@ -4,7 +4,8 @@ import static spark.Spark.*;
 
 public class TicTac {
     public static void main(String[] args) {
-    final Engine game = new Engine(1);
+        staticFileLocation("/public");
+        final Engine game = new Engine(1);
 
         post("/newgame", (request, response) -> {
         	game.newGame();
@@ -41,6 +42,7 @@ public class TicTac {
             StringBuilder buildBoard = new StringBuilder();
             char[][] board = game.getBoard();
             int counter = 1;
+            buildBoard.append("<head><link href=\"css/style.css\" rel=\"stylesheet\"   type=\"text/css\" /></head>");
             buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
                                 "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 1 + "\"" + ">" +
                                 "<button type=\"submit\" class=\"btn btn - default \">PvE</button>" +
