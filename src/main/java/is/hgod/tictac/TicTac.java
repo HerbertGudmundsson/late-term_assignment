@@ -1,7 +1,7 @@
 package is.hgod.tictac;
 
 /**
- * @author Árni Oddsson <arnio13@ru.is>
+ * @author Arni Oddsson <arnio13@ru.is>
  * @version 0.1
  * @since 2015-10-30
  */

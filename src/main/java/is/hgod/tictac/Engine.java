@@ -15,7 +15,7 @@ public class Engine{
     * Holds how many columns the game board has
     */
     private final int COLS = 3;
-    
+
     /**
     * Holds how many games the computer player has won
     */
@@ -27,15 +27,15 @@ public class Engine{
     /**
     * Holds how many games have ended in a draw
     */
-    private ties = 0;
+    private int ties = 0;
     /**
     * Holds how many games have been played
     */
-    private totalGames = 0;
+    private int totalGames = 0;
     /**
     * Holds the gamemode type
     */
-    private gameMode = 0;
+    private int gameMode = 0;
     /**
     * Holds the value of the player that made the most recent play
     */
