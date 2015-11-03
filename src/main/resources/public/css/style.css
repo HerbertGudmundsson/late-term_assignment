@@ -1,3 +1,47 @@
 body{
 	background-color:#000;
 }
+.board{
+	width:600px;
+	height:600px;
+	overflow: hidden;
+	margin:0 auto 0 auto;
+}
+.square{
+	width:198;
+	height:198;
+	float:left;
+	border:1px solid #FFF;
+}
+#square7{
+	border-left-color: #000;
+	border-top-color: #000;
+}
+#square8{
+	border-top-color: #000;
+}
+#square9{
+	border-right-color: #000;
+	border-top-color: #000;
+
+}
+#square4{
+	border-left-color: #000;
+}
+#square5{
+
+}
+#square6{
+	border-right-color: #000;
+}
+#square1{
+	border-left-color: #000;
+	border-bottom-color: #000;
+}
+#square2{
+	border-bottom-color: #000;
+}
+#square3{
+	border-right-color: #000;
+	border-bottom-color: #000;
+}

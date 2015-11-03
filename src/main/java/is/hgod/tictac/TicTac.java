@@ -42,7 +42,7 @@ public class TicTac {
             StringBuilder buildBoard = new StringBuilder();
             char[][] board = game.getBoard();           
             int counter = 7;
-            
+
             buildBoard.append("<head><link href=\"css/style.css\" rel=\"stylesheet\"   type=\"text/css\" /></head>");
             buildBoard.append("<form method=\"post\" action=\"/changeMode\" role=\"form\" id=\"mode\">" +
                                 "<input type=\"hidden\" name=\"mode\" value="+ "\"" + 1 + "\"" + ">" +
@@ -58,7 +58,7 @@ public class TicTac {
             buildBoard.append("<div class=\"Board\">");
             for (int i = 0; i < 3; i++){
                 for (int j = 0; j < 3; j++){
-                    buildBoard.append("<div class=\"square\">");
+                    buildBoard.append("<div class=\"square\" id=\"square" + counter + "\">");
                     if(board[i][j] == 0){
                         buildBoard.append("<form method=\"post\" action=\"/newplay\" role=\"form\" id=\"board\">" +
                                 "<input type=\"hidden\" name=\"square\" value="+ "\"" + counter + "\"" + ">" +
