@@ -2,3 +2,4 @@
 
 ./gradlew shadowJar
 ./gradlew javadoc
+./gradlew test jacocoTestReport

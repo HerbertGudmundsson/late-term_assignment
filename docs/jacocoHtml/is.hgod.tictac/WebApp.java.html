@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>WebApp.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">late-term_assignment</a> &gt; <a href="index.source.html" class="el_package">is.hgod.tictac</a> &gt; <span class="el_source">WebApp.java</span></div><h1>WebApp.java</h1><pre class="source lang-java linenums">package is.hgod.tictac;
+
+import static spark.Spark.*;
+
+<span class="nc" id="L5">public class WebApp {</span>
+<span class="nc" id="L6">    private Engine game1 = new Engine(1);</span>
+<span class="nc" id="L7">    private Engine game2 = new Engine(2);</span>
+<span class="nc" id="L8">    private Engine game = game1;</span>
+    
+    public void startApp() {
+<span class="nc" id="L11">        staticFileLocation(&quot;/public&quot;);</span>
+
+<span class="nc" id="L13">        post(&quot;/newplay&quot;, (request, response) -&gt; {</span>
+            String input = request.queryParams(&quot;square&quot;);
+            game.getPlay(input, game.nextPlayer()); 
+            if(game.getGameMode() == 1 &amp;&amp; game.getTurn() != 9){
+            	game.computerPlay();
+            }
+            response.redirect(&quot;/&quot;);
+            return response;
+        
+        });
+
+
+<span class="nc" id="L25">        post(&quot;/changeMode&quot;, (request, response) -&gt; {</span>
+            String input = request.queryParams(&quot;mode&quot;);
+            int mode = Integer.parseInt(input);
+            if(mode == 1){
+                game = game1;     
+            }
+            else if(mode == 2){
+                game = game2;
+            }
+            response.redirect(&quot;/&quot;);
+            return response;
+        });
+
+<span class="nc" id="L38">        get(&quot;/&quot;, (request, response) -&gt; {</span>
+            StringBuilder buildBoard = new StringBuilder();
+            char[][] board = game.getBoard();           
+            int counter = 7;
+
+            buildBoard.append(&quot;&lt;head&gt;&lt;link href=\&quot;css/style.css\&quot; rel=\&quot;stylesheet\&quot;   type=\&quot;text/css\&quot; /&gt;&lt;/head&gt;&quot; 
+                );
+            
+            buildBoard.append(&quot;&lt;div class=\&quot;Board\&quot;&gt;&quot;);
+            if(game.isWon() || game.getTurn() == 9){
+            	buildBoard.append(&quot;&lt;form method=\&quot;post\&quot; action=\&quot;/reset\&quot; role=\&quot;form\&quot; id=\&quot;resetgame\&quot;&gt;&quot; +
+                                &quot;&lt;button type=\&quot;submit\&quot; class=\&quot;btn-reset btn - default \&quot;&gt;Reset&lt;/button&gt;&quot;);
+        	}
+            for (int i = 0; i &lt; 3; i++){
+                for (int j = 0; j &lt; 3; j++){
+                    buildBoard.append(&quot;&lt;div class=\&quot;square\&quot; id=\&quot;square&quot; + counter + &quot;\&quot;&gt;&quot;);
+                    if(board[i][j] == 0 &amp;&amp; !game.isWon()){
+                        buildBoard.append(&quot;&lt;form method=\&quot;post\&quot; action=\&quot;/newplay\&quot; role=\&quot;form\&quot; id=\&quot;board\&quot;&gt;&quot; +
+                                &quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;square\&quot; value=&quot;+ &quot;\&quot;&quot; + counter + &quot;\&quot;&quot; + &quot;&gt;&quot; +
+                                &quot;&lt;button type=\&quot;submit\&quot; class=\&quot;btn btn - default squarebtn \&quot;&gt;Submit move&lt;/button&gt;&quot; +
+                                &quot;&lt;/form&gt;&quot; +
+                                &quot;&lt;/div&gt;&quot;);
+                    }else if(board[i][j] == 'X'){
+                        buildBoard.append(&quot;&lt;img src=\&quot;./images/x.png\&quot; /&gt;&lt;/div&gt;&quot;);
+
+                    }else if(board[i][j] == 'O'){
+                        buildBoard.append(&quot;&lt;img src=\&quot;./images/o.png\&quot; /&gt;&lt;/div&gt;&quot;);
+                    }
+                    else{
+                    	buildBoard.append(&quot;&lt;/div&gt;&quot;);
+                    }
+                    counter++;
+                }
+                counter -= 6;
+            }
+            //Logic for the scoreboard
+            int player1wins = game.getHumanWins(1);
+            int ties = game.getTies();
+            if(game.isWon() || game.getTurn() == 9){
+            	buildBoard.append(&quot;&lt;/form&gt;&quot;);
+            }
+            buildBoard.append(&quot;&lt;/div&gt;&quot; + &quot;&lt;div class=\&quot;scoreboard\&quot;&gt;&quot; +
+                              &quot;&lt;div class=\&quot;player1wins\&quot;&gt; X wins: &quot; + player1wins + &quot;&lt;/div&gt;&quot;);
+            if(game.getGameMode() == 1){
+                int computerwins = game.getComputerWins();
+                buildBoard.append(&quot;&lt;div class=\&quot;computerwins\&quot;&gt; O wins: &quot;  + computerwins + &quot;&lt;/div&gt;&quot; +
+                              &quot;&lt;div class=\&quot;ties\&quot;&gt; Ties: &quot; + ties + &quot;&lt;/div&gt;&quot;);    
+            }else{
+                int player2wins = game.getHumanWins(2);
+                buildBoard.append(&quot;&lt;div class=\&quot;player2wins\&quot;&gt; O wins: &quot; + player2wins + &quot;&lt;/div&gt;&quot; +
+                              &quot;&lt;div class=\&quot;ties\&quot;&gt; Ties: &quot; + ties + &quot;&lt;/div&gt;&quot;);
+            }
+
+            buildBoard.append(&quot;&lt;form method=\&quot;post\&quot; action=\&quot;/changeMode\&quot; role=\&quot;form\&quot; id=\&quot;mode\&quot;&gt;&quot; +
+                                &quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;mode\&quot; value=&quot;+ &quot;\&quot;&quot; + 2 + &quot;\&quot;&quot; + &quot;&gt;&quot; +
+                                &quot;&lt;button type=\&quot;submit\&quot; class=\&quot;btn-pvp btn - default \&quot;&gt;PvP&lt;/button&gt;&quot; +
+                                &quot;&lt;/form&gt;&quot; +
+                                &quot;&lt;form method=\&quot;post\&quot; action=\&quot;/changeMode\&quot; role=\&quot;form\&quot; id=\&quot;mode\&quot;&gt;&quot; +
+                                &quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;mode\&quot; value=&quot;+ &quot;\&quot;&quot; + 1 + &quot;\&quot;&quot; + &quot;&gt;&quot; +
+                                &quot;&lt;button type=\&quot;submit\&quot; class=\&quot;btn-pve btn - default \&quot;&gt;PvE&lt;/button&gt;&quot; +
+                                &quot;&lt;/form&gt;&quot; +
+                                &quot;&lt;/div&gt;&quot;);
+            
+            return buildBoard.toString();
+        });
+        
+<span class="nc" id="L104">        get(&quot;/newgame&quot;, (request, response) -&gt; {</span>
+            game.newGame();
+            if(game.nextPlayer() == 3){
+                game.computerPlay();
+            }
+            response.redirect(&quot;/&quot;);
+            return response;
+        });
+
+<span class="nc" id="L113">        post(&quot;/reset&quot;, (request, response) -&gt; {</span>
+            response.redirect(&quot;/newgame&quot;);
+            return response;
+        });
+
+<span class="nc" id="L118">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

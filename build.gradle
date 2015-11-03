@@ -12,6 +12,7 @@ plugins{
     id 'java'
     id 'application'
     id 'checkstyle'
+    id 'jacoco' 
 }
 
 mainClassName = 'is.hgod.tictac.TicTac'
@@ -40,5 +41,13 @@ jar {
 }
 
 task myJavadocs(type: Javadoc) {
-  source = sourceSets.main.allJava
+    source = sourceSets.main.allJava
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
 }
