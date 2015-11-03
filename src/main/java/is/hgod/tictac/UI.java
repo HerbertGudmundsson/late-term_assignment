@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 /**
- * @author Hermann Ingi Ragnarsson <hermannr14@ru.is>
+ * @author Hermann Ingi Ragnarsson hermannr14@ru.is
  * @version 0.1
  * @since 2015-10-30
  */

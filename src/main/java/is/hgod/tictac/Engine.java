@@ -1,7 +1,7 @@
 package is.hgod.tictac;
 
 /**
- * @author Jón Böðvarsson <jonbod12@ru.is>
+ * @author Jón Böðvarsson jonbod12@ru.is
  * @version 0.1
  * @since 2015-10-30
  */
@@ -76,7 +76,7 @@ public class Engine{
     }
     /**
     * Determines which player has the next move
-    *
+    * 
     * @return The value of the player that has the next move
     */
     public int nextPlayer(){
@@ -90,7 +90,8 @@ public class Engine{
     }
     /**
     * Gets the next move for the next playe and determines if that move is a winning move or not.
-    *
+    * @param input The input from player / computer
+    * @param player The player that is making the play. 1 = Player1, 2 = Player 2, 3 = Computer
     * @return A value that says if the move was a winning move or not.
     */
     public int getPlay(String input, int player){

@@ -38,3 +38,7 @@ jar {
     attributes("Main-Class": "is.hgod.tictac.TicTac")
     }
 }
+
+task myJavadocs(type: Javadoc) {
+  source = sourceSets.main.allJava
+}

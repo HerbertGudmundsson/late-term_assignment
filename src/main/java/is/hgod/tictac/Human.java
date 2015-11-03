@@ -1,7 +1,7 @@
 package is.hgod.tictac;
 
 /**
- * @author Jón Böðvarsson <jonbod12@ru.is>
+ * @author Jón Böðvarsson jonbod12@ru.is
  * @version 0.1
  * @since 2015-10-30
  */
