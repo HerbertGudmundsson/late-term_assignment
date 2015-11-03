@@ -1,0 +1,1 @@
+web: ./build/install/late-term_assignment/bin/late-term_assignment
