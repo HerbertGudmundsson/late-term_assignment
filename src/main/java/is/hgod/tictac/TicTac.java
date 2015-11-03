@@ -7,22 +7,21 @@ public class TicTac {
     
     public static void main(String[] args) {
         staticFileLocation("/public");
-        post("/newgame", (request, response) -> {
-        	game.newGame();
-        	return response;
-		});
 
-		post("/newplay", (request, response) -> {
+        post("/newplay", (request, response) -> {
             String input = request.queryParams("square");
-                if(game.getPlay(input, game.nextPlayer()) == 1){
-                return "You won";    
+            if(game.getPlay(input, game.nextPlayer()) == 1){
+                response.redirect("/newgame");
+                return response;    
             }
-			if(game.getGameMode() == 1 && game.computerPlay() == 1){
-                return "Computer won";
+            if(game.getGameMode() == 1 && game.computerPlay() == 1){
+                response.redirect("/computerwon");
+                return response;
             }
             response.redirect("/");
-			return response;
-	    });
+            return response;
+        
+        });
 
 
         post("/changeMode", (request, response) -> {
@@ -75,8 +74,41 @@ public class TicTac {
                 }
                 counter -= 6;
             }
-            buildBoard.append("</div>");
+
+            int player1wins = game.getHumanWins(1);
+            int ties = game.getTies();
+
+            if(game.getGameMode() == 1){
+                int computerwins = game.getComputerWins();
+                buildBoard.append("</div>" +
+                              "<div class=\"player1wins\"> Player 1 wins: " + player1wins + "</div>" +
+                              "<div class=\"computerwins\"> Computer wins: "  + computerwins + "</div>" +
+                              "<div class=\"ties\"> Ties: " + ties + "</div>");    
+            }else{
+                int player2wins = game.getHumanWins(2);
+                buildBoard.append("</div>" +
+                              "<div class=\"player1wins\"> Player 1 wins: " + player1wins + "</div>" +
+                              "<div class=\"player2wins\"> Player 2 wins: " + player2wins + "</div>" +
+                              "<div class=\"ties\"> Ties: " + ties + "</div>");
+            }
+            
             return buildBoard.toString();
         });
+        
+        get("/newgame", (request, response) -> {
+            game.newGame();
+            response.redirect("/");
+            return response;
+        });
+
+        get("/computerwon", (request, response) -> {
+            game.newGame();
+            if(game.nextPlayer() == 3){
+                game.computerPlay();
+            }
+            response.redirect("/");
+            return response;
+        });
+
 	}
 }
