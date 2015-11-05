@@ -8,9 +8,10 @@ import static spark.Spark.*;
 <span class="nc" id="L8">    private Engine game = game1;</span>
     
     public void startApp() {
-<span class="nc" id="L11">        staticFileLocation(&quot;/public&quot;);</span>
+        //Comment
+<span class="nc" id="L12">	staticFileLocation(&quot;/public&quot;);</span>
 
-<span class="nc" id="L13">        post(&quot;/newplay&quot;, (request, response) -&gt; {</span>
+<span class="nc" id="L14">        post(&quot;/newplay&quot;, (request, response) -&gt; {</span>
             String input = request.queryParams(&quot;square&quot;);
             game.getPlay(input, game.nextPlayer()); 
             if(game.getGameMode() == 1 &amp;&amp; game.getTurn() != 9){
@@ -22,7 +23,7 @@ import static spark.Spark.*;
         });
 
 
-<span class="nc" id="L25">        post(&quot;/changeMode&quot;, (request, response) -&gt; {</span>
+<span class="nc" id="L26">        post(&quot;/changeMode&quot;, (request, response) -&gt; {</span>
             String input = request.queryParams(&quot;mode&quot;);
             int mode = Integer.parseInt(input);
             if(mode == 1){
@@ -35,7 +36,7 @@ import static spark.Spark.*;
             return response;
         });
 
-<span class="nc" id="L38">        get(&quot;/&quot;, (request, response) -&gt; {</span>
+<span class="nc" id="L39">        get(&quot;/&quot;, (request, response) -&gt; {</span>
             StringBuilder buildBoard = new StringBuilder();
             char[][] board = game.getBoard();           
             int counter = 7;
@@ -101,7 +102,7 @@ import static spark.Spark.*;
             return buildBoard.toString();
         });
         
-<span class="nc" id="L104">        get(&quot;/newgame&quot;, (request, response) -&gt; {</span>
+<span class="nc" id="L105">        get(&quot;/newgame&quot;, (request, response) -&gt; {</span>
             game.newGame();
             if(game.nextPlayer() == 3){
                 game.computerPlay();
@@ -110,11 +111,11 @@ import static spark.Spark.*;
             return response;
         });
 
-<span class="nc" id="L113">        post(&quot;/reset&quot;, (request, response) -&gt; {</span>
+<span class="nc" id="L114">        post(&quot;/reset&quot;, (request, response) -&gt; {</span>
             response.redirect(&quot;/newgame&quot;);
             return response;
         });
 
-<span class="nc" id="L118">	}</span>
+<span class="nc" id="L119">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

@@ -8,7 +8,8 @@ public class WebApp {
     private Engine game = game1;
     
     public void startApp() {
-        staticFileLocation("/public");
+        //Comment
+	staticFileLocation("/public");
 
         post("/newplay", (request, response) -> {
             String input = request.queryParams("square");
